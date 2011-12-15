@@ -50,8 +50,13 @@ class Trust < Padrino::Application
     can [:plus, :minus], Rating
   end
 
-  role [:moderator] do
+  role [:admin, :moderator] do
     can [:edit, :update, :approve, :reject], Person
+  end
+
+  role [:admin] do
+    can :delete, Person
+    can [:index, :view, :block, :unblock], Account
   end
 
   DataMapper::Pagination.defaults[:previous_text] = '←'

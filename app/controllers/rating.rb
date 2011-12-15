@@ -3,7 +3,8 @@ Trust.controllers :rating do
     authorize! :plus, Rating
     person = Person.get params[:person_id]
     halt 404 if person.nil?
-    rating = Rating.first_or_create(:person => person, :account => current_account)
+    rating = Rating.first(:person => person, :account => current_account) ||
+        Rating.new(:person => person, :account => current_account)
     rating.positive = true
     rating.save
     person.total = person.rating
@@ -16,7 +17,8 @@ Trust.controllers :rating do
     authorize! :minus, Rating
     person = Person.get params[:person_id]
     halt 404 if person.nil?
-    rating = Rating.first_or_create(:person => person, :account => current_account)
+    rating = Rating.first(:person => person, :account => current_account) ||
+        Rating.new(:person => person, :account => current_account)
     rating.positive = false
     rating.save
     person.total = person.rating

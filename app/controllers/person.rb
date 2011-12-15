@@ -1,7 +1,8 @@
 Trust.controllers :person do
   get :index, :map => '/' do
     authorize! :index, Person
-    @people = Person.all(:moderated => true) + Person.all(:creator => current_account)
+    @people = Person.all(:moderated => false, :creator => current_account) +
+      Person.all(:moderated => true, :order => [ :total.desc ])
     render 'person/index'
   end
 
@@ -22,9 +23,7 @@ Trust.controllers :person do
     @person = Person.new params[:person]
     @person.photo = CGI.unescapeHTML @person.photo
     @person.creator = current_account
-    logger.error @person
     if @person.save
-      logger.error @person.errors
       flash[:notice] = "Saved and on moderation"
       redirect url(:person, :index)
     else
@@ -53,10 +52,25 @@ Trust.controllers :person do
   post :approve, :with => :person_id do
     authorize! :approve, Person
 
+    @person = Person.get params[:person_id]
+    halt 404 if @person.nil?
+    @person.moderated = true
+    @person.save
+    redirect url(:person, :view, @person.id)
   end
 
   post :reject, :with => :person_id do
     authorize! :reject, Person
+
+    @person = Person.get params[:person_id]
+    halt 404 if @person.nil?
+    @person.moderated = false
+    @person.save
+    redirect url(:person, :view, @person.id)
+  end
+
+  post :delete, :with => :person_id do
+    authorize! :delete, Person
 
   end
 end

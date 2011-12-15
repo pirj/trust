@@ -7,7 +7,7 @@ class Person
   property :name, String
   property :bio, String
   property :photo, String, :length => 256
-  property :moderated, Boolean
+  property :moderated, Boolean, :default => false
 
   has n, :ratings
   belongs_to :creator, 'Account'
