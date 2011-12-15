@@ -9,11 +9,15 @@ gem 'bcrypt-ruby', :require => "bcrypt"
 #gem 'sass'
 gem 'slim'
 
-%w(core sqlite-adapter postgres-adapter validations timestamps migrations constraints aggregates types pager is-tree).each do |g|
+%w(core validations timestamps migrations constraints aggregates types pager is-tree).each do |g|
   gem 'dm-' + g
 end
 
 # gem 'do_postgres'
+group :production do
+ gem 'pg'
+ gem 'dm-postgres-adapter'
+end
 
 # Padrino Stable Gem
 gem 'padrino', '0.10.5'
@@ -32,5 +36,6 @@ group :test do
 end
 
 group :development do
+  gem 'dm-sqlite-adapter'
   gem 'thin'
 end
