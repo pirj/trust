@@ -30,3 +30,7 @@ group :test do
   gem 'rspec', :group => "test"
   gem 'rack-test', :require => "rack/test", :group => "test"
 end
+
+group :development do
+  gem 'thin'
+end
