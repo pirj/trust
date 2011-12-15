@@ -1,0 +1,24 @@
+div
+  a href=url(:person, :new) Добавть деятеля
+
+- unless @people.empty?
+  table
+    - for person in @people do
+      tr
+        td.narrow
+          img.avatar.plus ref=person.id src=person.photo alt=person.name
+        td.ultranarrow
+          img.tiny.rate ref=url(:rating, :plus, person.id) src="images/noun_project_330.svg" title="Доверяю"
+          br
+          span.rating id=person.id = person.total
+          br
+          img.tiny.rate ref=url(:rating, :minus, person.id) src="images/noun_project_339.svg" title="Не доверяю"
+        td.narrow
+          a href=url(:person, :view, person.id) = person.name
+        td = person.bio
+        td.narrow
+          -unless person.moderated
+            img src="images/noun_project_727.svg" title="На модерации"
+- else
+  p
+   | Здесь почему-то пусто. Наверное, кто-то нехороший всё удалил.

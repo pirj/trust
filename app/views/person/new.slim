@@ -1,0 +1,25 @@
+div
+  | Все введённые общественные деятели проходят модерацию перед выведением в общий список. Вы по-прежнему сможете видеть введённого вами общественного деятеля, и даже отдать свою квоту доверия.
+  | Старайтесь указывать имя и фамилию точно, в формате "Андрей Иванов", и вводить актуальную краткую информацию.
+
+div
+  a href=url(:person, :newme) Я - общественный деятель
+
+- form_for @person, url(:person, :create) do |f|
+  - unless f.error_messages.empty? then
+    div.error == f.error_messages
+  fieldset
+    p
+      == f.label :name, :caption => "Имя"
+      br
+      == f.text_field :name, :class => :text
+    p
+      == f.label :bio, :caption => "Краткая информация"
+      br
+      == f.text_area :bio
+    p
+      == f.label :photo, :caption => "Url фотографии"
+      br
+      == f.text_field :photo
+    p
+      == f.submit 'Добавить', :class => 'button'
