@@ -1,6 +1,6 @@
 #coding: UTF-8
 class Trust < Padrino::Application
-  register SassInitializer
+#  register SassInitializer
   register Padrino::Rendering
   register Padrino::Mailer
   register Padrino::Helpers

@@ -6,7 +6,7 @@ gem 'sinatra-flash', :require => 'sinatra/flash'
 
 # Component requirements
 gem 'bcrypt-ruby', :require => "bcrypt"
-gem 'sass'
+#gem 'sass'
 gem 'slim'
 
 %w(core sqlite-adapter postgres-adapter validations timestamps migrations constraints aggregates types pager is-tree).each do |g|
