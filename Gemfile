@@ -30,9 +30,9 @@ gem 'omniauth-facebook'
 #gem 'omniauth-vkontakte'
 
 # Test requirements
+gem 'rspec'
 group :test do
-  gem 'rspec', :group => "test"
-  gem 'rack-test', :require => "rack/test", :group => "test"
+  gem 'rack-test', :require => "rack/test"
 end
 
 group :development do
