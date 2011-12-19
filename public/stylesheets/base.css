@@ -1,6 +1,6 @@
 body {overflow-x: hidden; }
 
-img.avatar {height: 80px; max-height: 80px; max-width: 80px; }
+img.avatar {max-height: 80px; max-width: 80px; }
 img.tiny {height: 20px; }
 img.nano {height: 10px; }
 
