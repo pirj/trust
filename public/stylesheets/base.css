@@ -2,6 +2,7 @@ body {overflow-x: hidden; }
 
 img.avatar {height: 80px; max-height: 80px; max-width: 80px; }
 img.tiny {height: 20px; }
+img.nano {height: 1em; }
 
 span.rating {font-weight: bold; font-size: 200%; }
 

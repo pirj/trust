@@ -48,7 +48,7 @@ Trust.controllers :rating do
 
   get :feed do
     @title = "Прямо сейчас"
-    @ratings = aggregate Rating.all(:order => [:updated_at]).page(0, :per_page => 10)
+    @ratings = aggregate Rating.all(:order => [:updated_at]).page(0, :per_page => 20)
     render 'rating/table', :layout => false
   end
 end
