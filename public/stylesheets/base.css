@@ -1,7 +1,7 @@
 body{overflow-x: hidden; }
 .content {background-image: url('/images/stripe.png'); }
 
-img.avatar {height: 100px; max-height: 100px; max-width: 100px; }
+img.avatar {height: 80px; max-height: 80px; max-width: 80px; }
 img.tiny {height: 20px; }
 
 span.rating {font-weight: bold; font-size: 200%; }
@@ -17,6 +17,9 @@ span.rating {font-weight: bold; font-size: 200%; }
   margin-top: -80px;
 }
 .header a {text-decoration: none; }
+
+.header .sub .quotes p {display: none; }
+.header .sub .quotes p.active {display: block; }
 
 .logins {
   position: relative;
@@ -66,5 +69,3 @@ span.rating {font-weight: bold; font-size: 200%; }
   line-height:12px;
   display:block;
 }
-
-.hidden {display: none; }
