@@ -4,6 +4,11 @@ img.avatar {max-height: 80px; max-width: 80px; }
 img.tiny {height: 20px; }
 img.nano {height: 10px; }
 
+img.tiny.rate.weak {
+  opacity: 0.4;
+  filter: alpha(opacity=40); /* For IE8 and earlier */
+}
+
 span.rating {font-weight: bold; font-size: 200%; }
 
 .header h1 {

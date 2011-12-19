@@ -4,6 +4,8 @@ $(function() {
     var ref = el.attr('ref')
     $.post(ref, function(data) {
       el.siblings('span.rating').text(data)
+      if(el.hasClass('plus')) el.removeClass('weak').siblings('.minus').addClass('weak')
+      else if(el.hasClass('minus')) el.removeClass('weak').siblings('.plus').addClass('weak')
     })
   })
 
