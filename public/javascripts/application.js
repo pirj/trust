@@ -8,6 +8,11 @@ $(function() {
   })
 
   setTimeout("change_quote()", 10000)
+
+  $(".recommendations").load("/rating/recommendations")
+  $(".friends").load("/rating/friends")
+  $(".my").load("/rating/my")
+  $(".feed").load("/rating/feed")
 })
 
 function change_quote() {
