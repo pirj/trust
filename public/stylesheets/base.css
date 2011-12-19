@@ -1,7 +1,7 @@
 body{overflow-x: hidden; }
 .content {background-image: url('/images/stripe.png'); }
 
-img.avatar {height: 100px; }
+img.avatar {height: 100px; max-height: 100px; max-width: 100px; }
 img.tiny {height: 20px; }
 
 span.rating {font-weight: bold; font-size: 200%; }
@@ -12,15 +12,19 @@ span.rating {font-weight: bold; font-size: 200%; }
   background: url('/images/noun_project_756.svg');
   background-repeat: no-repeat;
 }
-.header p {
+.header .sub {
   padding-left: 100px;
-  margin-top: -60px;
-  margin-bottom: 40px;
+  margin-top: -80px;
 }
 .header a {text-decoration: none; }
 
+.logins {
+  position: relative;
+  float: right;
+}
+
 .footer {
-  position: absolute;
+  position: relative;
   bottom: 0;
 }
 

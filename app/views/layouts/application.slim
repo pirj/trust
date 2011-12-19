@@ -11,28 +11,28 @@ html
       a href="http://github.com/pirj/trust"
         img style="position: absolute; top: 0; left: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/edc6dae7a1079163caf7f17c60495bbb6d027c93/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub"
 
-      div.span-15
-        div.header
-          a href='/'
-            h1 Рейтинг доверия
-          p Народный рейтинг общественных деятелей
-
-        div
-          | Отличие государственного деятеля от политика в том, что политик ориентируется на следующие выборы, а государственный деятель — на следующее поколение.
-          p.right
-            b У. Черчилль
-
-        div.hidden
-          | Страна должна знать своих героев. В лицо!
-          p.right
-            b фильм "Старшина"
-
-      div.span-7.last
+      div.logins
         -if current_account.nil?
           a href='/auth/facebook' Войти с помощью Facebook
         -unless current_account.nil?
           span Привествуем, 
           span = current_account.name
+
+      div.header
+        a href='/'
+          h1 Рейтинг доверия
+        div.sub
+          p Народный рейтинг общественных деятелей
+
+          p
+            | Отличие государственного деятеля от политика в том, что политик ориентируется на следующие выборы, а государственный деятель — на следующее поколение.
+            span.right 
+              b У. Черчилль
+
+        div.hidden
+          | Страна должна знать своих героев. В лицо!
+          p.right
+            b фильм "Старшина"
 
       div
         span.corner-banner
