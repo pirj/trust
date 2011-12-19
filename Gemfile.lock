@@ -61,6 +61,9 @@ GEM
     http_router (0.10.2)
       rack (>= 1.0.0)
       url_mount (~> 0.2.1)
+    httparty (0.8.1)
+      multi_json
+      multi_xml
     i18n (0.6.0)
     json (1.6.3)
     mail (2.3.0)
@@ -69,6 +72,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.17.2)
     multi_json (1.0.4)
+    multi_xml (0.4.1)
     multipart-post (1.1.4)
     oauth2 (0.5.1)
       faraday (~> 0.7.4)
@@ -167,6 +171,7 @@ DEPENDENCIES
   dm-timestamps
   dm-types
   dm-validations
+  httparty
   omniauth
   omniauth-facebook
   padrino (= 0.10.5)
