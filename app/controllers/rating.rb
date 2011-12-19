@@ -42,8 +42,12 @@ Trust.controllers :rating do
 
   get :friends do
     @title = "Друзья"
-    @ratings = []
-    render 'rating/table', :layout => false
+    # TODO: turn off pagination/or fetch all pages
+    friends = MultiJson.decode HTTParty.get("https://graph.facebook.com/me/friends?access_token=#{session[:facebook_auth_token]}").body
+    friend_ids = friends.first[1].map { |friend| friend['id'] }
+    @ratings = aggregate Account.all(:uid => friend_ids).ratings
+
+    render 'rating/tableex', :layout => false
   end
 
   get :feed do

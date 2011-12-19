@@ -17,6 +17,7 @@ html
         -unless current_account.nil?
           span Привествуем, 
           span = current_account.name
+          a href='/auth/logout' Выйти
 
       div.header
         a href='/'

@@ -1,0 +1,15 @@
+table
+  tr
+    th = @title
+
+  -for rating in @ratings
+    tr
+      td = rating[:person]
+      td 
+        span = rating[:plus]
+        -if rating[:plus]
+          img.nano src="/images/noun_project_330.svg" title="Доверяют"
+      td
+        span = rating[:minus]
+        -if rating[:minus]
+          img.nano src="/images/noun_project_339.svg" title="Не доверяют"

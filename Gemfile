@@ -29,6 +29,8 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 #gem 'omniauth-vkontakte'
 
+gem 'httparty'
+
 # Test requirements
 gem 'rspec'
 group :test do

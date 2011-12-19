@@ -14,8 +14,8 @@ class Trust < Padrino::Application
   enable :authentication
   use OmniAuth::Builder do
 #    provider :vkontakte, ENV['API_KEY'], ENV['API_SECRET']
-    provider :facebook, '273684999345723', '1f0cd672ea60ef13aa5f21de219c56ce'
-    #, :scope => 'email,offline_access,read_stream', :display => 'popup'
+    provider :facebook, '273684999345723', '1f0cd672ea60ef13aa5f21de219c56ce', :scope => 'email,offline_access,user_relationships'
+    #, :display => 'popup'
     # TODO: request specific facebook permissions (scope) http://developers.facebook.com/docs/reference/api/permissions/
     # TODO: tune auth dialog type http://developers.facebook.com/docs/reference/dialogs#display
   end

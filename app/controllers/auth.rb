@@ -13,14 +13,19 @@ Trust.controllers :auth do
       account.role = :admin
       account.save
     end
+    session[:facebook_auth_token] = auth[:credentials][:token]
 
     set_current_account(account)
-
     redirect '/'
   end
   
   get :failure, :map => '/auth/failure' do
     content_type 'application/json'
     MultiJson.encode(request.env['omniauth.auth'])
+  end
+
+  get :logout do
+    set_current_account(nil)
+    redirect '/'
   end
 end
