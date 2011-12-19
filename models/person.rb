@@ -14,6 +14,9 @@ class Person
 
   property :total, Integer, :default => 0
 
+  property :deleted_at, ParanoidDateTime
+  timestamps :at
+
   def rating
     ratings(:positive => true).count - ratings(:positive => false).count
   end

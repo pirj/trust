@@ -8,6 +8,9 @@ class Account
   property :name, String
   property :avatar, String
 
+  property :deleted_at, ParanoidDateTime
+  timestamps :at
+
   ##
   # This method is used by AuthenticationHelper
   #

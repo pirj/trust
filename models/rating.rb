@@ -6,4 +6,7 @@ class Rating
   belongs_to :person, :key => true
 
   property :positive, Boolean
+
+  property :deleted_at, ParanoidDateTime
+  timestamps :at
 end
