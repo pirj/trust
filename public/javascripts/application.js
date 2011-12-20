@@ -16,9 +16,9 @@ $(function() {
   $(".my").load("/rating/my")
   $(".feed").load("/rating/feed")
 
-  if($('.fb-login-button').length == 1) {
-    FB.init({appId: '273684999345723', xfbml: true, cookie: true, oauth: true});
+  FB.init({appId: '273684999345723', xfbml: true, cookie: true, oauth: true});
 
+  if($('#not_logged_in').length == 1 && $('#no_auto_login').length == 0) {
     FB.getLoginStatus(function(response) {
       if (response.status === 'connected') {
         var uid = response.authResponse.userID;

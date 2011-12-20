@@ -27,7 +27,6 @@ Trust.controllers :auth do
   get :callback do
     token = params[:token]
     uid = params[:uid]
-    logger.error params.inspect
 
     account = Account.first(:uid => uid)
     if account.nil? then
@@ -53,6 +52,7 @@ Trust.controllers :auth do
 
   get :logout do
     set_current_account(nil)
+    session[:no_auto_login] = true
     redirect '/'
   end
 end
