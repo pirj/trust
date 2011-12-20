@@ -1,5 +1,10 @@
+class Facebook
+  include HTTParty
+  follow_redirects false
+end
+
 Trust.controllers :auth do
-  get :callback, :map => '/auth/:provider/callback' do
+  get :omniauth_callback, :map => '/auth/:provider/callback' do
     auth = request.env['omniauth.auth']
     account = Account.first(:uid => auth[:uid], :provider => params[:provider]) ||
       Account.create(:uid => auth[:uid], :provider => params[:provider],
@@ -19,6 +24,28 @@ Trust.controllers :auth do
     redirect '/'
   end
   
+  get :callback do
+    token = params[:token]
+    uid = params[:uid]
+    logger.error params.inspect
+
+    account = Account.first(:uid => uid)
+    if account.nil? then
+      user = MultiJson.decode HTTParty.get("https://graph.facebook.com/me?access_token=#{token}").body
+      avatar = Facebook.get("https://graph.facebook.com/me/picture?access_token=#{token}&type=square").headers['location']
+      account = Account.create(:uid => uid, :provider => 'facebook', :name => user['name'], :avatar => avatar, :role => :user)
+    end
+
+    if account.uid == '1330077461' and account.role != :admin then
+      account.role = :admin
+      account.save
+    end
+    session[:facebook_auth_token] = token
+
+    set_current_account(account)
+    redirect '/'
+  end
+
   get :failure, :map => '/auth/failure' do
     content_type 'application/json'
     MultiJson.encode(request.env['omniauth.auth'])

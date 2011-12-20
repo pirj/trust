@@ -15,6 +15,18 @@ $(function() {
   $(".friends").load("/rating/friends")
   $(".my").load("/rating/my")
   $(".feed").load("/rating/feed")
+
+  if($('.fb-login-button').length == 1) {
+    FB.init({appId: '273684999345723', xfbml: true, cookie: true, oauth: true});
+
+    FB.getLoginStatus(function(response) {
+      if (response.status === 'connected') {
+        var uid = response.authResponse.userID;
+        var accessToken = response.authResponse.accessToken;
+        location.href = "/auth/callback?token="+accessToken+"&uid="+uid
+      }
+    })
+  }
 })
 
 function change_quote() {

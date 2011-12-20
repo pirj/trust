@@ -4,16 +4,18 @@ html
     title Рейтинг доверия
     meta name="keywords" content="Рейтинг доверия Народный рейтинг общественных деятелей политик политика"
     == javascript_include_tag 'jquery.min.js', 'application'
+    == javascript_include_tag '//connect.facebook.net/ru_RU/all.js'
     == stylesheet_link_tag 'base', 'grid', 'typography', 'forms'
 
   body
     div.container
+      div#fb-root
       a href="http://github.com/pirj/trust"
         img style="position: absolute; top: 0; left: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/edc6dae7a1079163caf7f17c60495bbb6d027c93/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub"
 
       div.logins
         -if current_account.nil?
-          a href='/auth/facebook' Войти с помощью Facebook
+          div.fb-login-button data-scope='offline_access,user_relationships' Войти с помощью Facebook
         -unless current_account.nil?
           span Привествуем, 
           span = current_account.name
