@@ -52,6 +52,13 @@ Trust.controllers :person do
 
   end
 
+  get :suspicious do
+    authorize! :approve, Person
+
+    @people = Person.all(:moderated => false, :order => [ :updated_at.asc ])
+    render 'person/shortindex'
+  end
+
   post :approve, :with => :person_id do
     authorize! :approve, Person
 
@@ -75,5 +82,9 @@ Trust.controllers :person do
   post :delete, :with => :person_id do
     authorize! :delete, Person
 
+    @person = Person.get params[:person_id]
+    halt 404 if @person.nil?
+    @person.destroy
+    redirect url(:person, :suspicious)
   end
 end

@@ -1,0 +1,16 @@
+div.span-17.colborder
+
+  - unless @people.empty?
+    table
+      - for person in @people do
+        tr
+          td
+            a href=person.photo = Ссылка на аватар
+          td.narrow
+            a href=url(:person, :view, person.id) = person.name
+          td = person.bio
+  - else
+    p
+     | Здесь почему-то пусто. Наверное, никто никого не добавлял.
+
+hr

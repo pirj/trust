@@ -49,6 +49,11 @@ html
       hr
 
       div
+        -if can? :approve, Person
+          span
+            a href=url(:person, :suspicious) Деятели на модерацию
+
+      div
         == yield
 
       div.span-23.footer

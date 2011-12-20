@@ -27,6 +27,7 @@ $(function() {
       }
     })
   }
+
 })
 
 function change_quote() {
