@@ -2,14 +2,11 @@ div.span-17.colborder
 
   a href=url(:person, :new) Добавить деятеля
 
-  - unless @people.empty?
-    div.search
-      /img.tiny src='/images/noun_project_95.svg'
-      input#search.prompt type='text' rel='Поиск'
+  div.search
+    /img.tiny src='/images/noun_project_95.svg'
+    input#search.prompt type='text' rel='Поиск'
+  div#list
     == partial 'person/table'
-  - else
-    p
-     | Здесь почему-то пусто. Наверное, кто-то нехороший всё удалил.
 
 div.span-6.last
   -unless current_account.nil?

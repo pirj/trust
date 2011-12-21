@@ -3,9 +3,7 @@ Trust.controllers :person do
     authorize! :index, Person
 
     @people = Person.all(:moderated => false, :creator => current_account) +
-      Person.all(:moderated => true, :order => [ :total.desc ])
-    name = params[:query]
-    @people = @people & Person.all(:conditions => ["name ILIKE ?", "%#{name}%"]) unless name.nil?
+      Person.all(:name.like => "%#{params[:query]}%", :moderated => true, :order => [ :total.desc ])
 
     @votes = Hash[*Rating.all(:account => current_account, :person => @people).map do |rating|
       [rating.person, rating.positive]

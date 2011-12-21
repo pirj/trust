@@ -1,4 +1,4 @@
-table#list
+table
   - for person in @people do
     tr
       td.narrow
@@ -15,3 +15,6 @@ table#list
       td.narrow
         a href=url(:person, :view, person.id) = person.name
       td = person.bio
+- if @people.empty?
+  p
+   | Ничего не найдено. Наверное, кто-то нехороший всё удалил.
