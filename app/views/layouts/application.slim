@@ -3,9 +3,9 @@ html
   head
     title Рейтинг доверия
     meta name="keywords" content="Рейтинг доверия Народный рейтинг общественных деятелей политик политика"
-    == javascript_include_tag 'jquery.min.js', 'application'
+    == javascript_include_tag 'jquery.min.js', 'jquery.loadmask.min.js', 'maskedload', 'application'
     == javascript_include_tag '//connect.facebook.net/ru_RU/all.js'
-    == stylesheet_link_tag 'base', 'grid', 'typography', 'forms'
+    == stylesheet_link_tag 'grid', 'typography', 'forms', 'jquery.loadmask.css', 'base'
 
   body
     /== javascript_include_tag 'https://grajdanin.tenderapp.com/tender_widget.js'
@@ -52,6 +52,9 @@ html
         -if can? :approve, Person
           span
             a href=url(:person, :suspicious) Деятели на модерацию
+        -if can? :manage, Account
+          span
+            a href=url(:person, :suspicious) Управление пользователями
 
       div
         == yield

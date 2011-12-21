@@ -1,12 +1,20 @@
 Trust.controllers :person do
   get :index, :map => '/' do
     authorize! :index, Person
+
     @people = Person.all(:moderated => false, :creator => current_account) +
       Person.all(:moderated => true, :order => [ :total.desc ])
+    name = params[:query]
+    @people = @people & Person.all(:conditions => ["name ILIKE ?", "%#{name}%"]) unless name.nil?
+
     @votes = Hash[*Rating.all(:account => current_account, :person => @people).map do |rating|
       [rating.person, rating.positive]
     end.flatten]
-    render 'person/index'
+    if request.xhr?
+      partial 'person/table'
+    else
+      render 'person/index'
+    end
   end
 
   get :new do

@@ -35,6 +35,14 @@ span.rating {font-weight: bold; font-size: 200%; }
 .narrow {width: 100px; }
 .ultranarrow {width: 50px; }
 
+.search img {padding: 1em 1em 0 0.5em; }
+.search input {
+  font-size: 200%;
+  width: 100%;
+  color: black;
+}
+.search input.prompt {color: gray; }
+
 .corner-banner {
   position: absolute;
   right: -65px;

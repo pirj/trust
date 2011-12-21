@@ -1,5 +1,5 @@
 $(function() {
-  $('img.rate').bind('click', function() {
+  $('img.rate').live('click', function() {
     var el = $(this)
     var ref = el.attr('ref')
     $.post(ref, function(data) {
@@ -11,10 +11,10 @@ $(function() {
 
   setTimeout("change_quote()", 10000)
 
-  $(".recommendations").load("/rating/recommendations")
-  $(".friends").load("/rating/friends")
-  $(".my").load("/rating/my")
-  $(".feed").load("/rating/feed")
+  $(".recommendations").maskedload("/rating/recommendations")
+  $(".friends").maskedload("/rating/friends")
+  $(".my").maskedload("/rating/my")
+  $(".feed").maskedload("/rating/feed")
 
   FB.init({appId: '273684999345723', xfbml: true, cookie: true, oauth: true});
 
@@ -28,6 +28,21 @@ $(function() {
     })
   }
 
+  $('input#search').each(function(){
+    var prompt = $(this).attr('rel');
+    if($(this).val() == "")
+      $(this).val(prompt).addClass('prompt');
+    $(this).bind('keypress keydown change input paste', function(){
+      if($(this).val() === prompt)
+        $(this).val('').removeClass('prompt');
+    }).bind('blur', function(){
+      if($(this).val() === '')
+        $(this).val(prompt).addClass('prompt');
+    }).bind('input', function(){
+      if($(this).val() != prompt)
+        $("#list").maskedload("/?query="+$(this).val())
+    })
+  })
 })
 
 function change_quote() {
