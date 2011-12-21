@@ -29,9 +29,6 @@ GEM
     dm-postgres-adapter (1.2.0)
       dm-do-adapter (~> 1.2.0)
       do_postgres (~> 0.10.6)
-    dm-sqlite-adapter (1.2.0)
-      dm-do-adapter (~> 1.2.0)
-      do_sqlite3 (~> 0.10.6)
     dm-timestamps (1.2.0)
       dm-core (~> 1.2.0)
     dm-types (1.2.1)
@@ -45,8 +42,6 @@ GEM
     dm-validations (1.2.0)
       dm-core (~> 1.2.0)
     do_postgres (0.10.7)
-      data_objects (= 0.10.7)
-    do_sqlite3 (0.10.7)
       data_objects (= 0.10.7)
     eventmachine (0.12.10)
     faraday (0.7.5)
@@ -167,7 +162,6 @@ DEPENDENCIES
   dm-migrations
   dm-pager
   dm-postgres-adapter
-  dm-sqlite-adapter
   dm-timestamps
   dm-types
   dm-validations

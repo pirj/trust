@@ -13,7 +13,7 @@ DataMapper.logger = logger
 DataMapper::Property::String.length(255)
 
 case Padrino.env
-  when :development then DataMapper.setup(:default, "sqlite3://" + Padrino.root('db', "trust_development.db"))
+  when :development then DataMapper.setup(:default, 'postgres://trust:Aigei4oob7ohn4ie@localhost/trust')
   when :production  then DataMapper.setup(:default, ENV['DATABASE_URL'] || 'postgres://localhost/mydb')
   when :test        then DataMapper.setup(:default, "sqlite3://" + Padrino.root('db', "trust_test.db"))
 end
