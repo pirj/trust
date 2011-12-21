@@ -1,10 +1,32 @@
 div.span-17.colborder
 
-  a href=url(:person, :new) Добавить деятеля
-
   div.search
     /img.tiny src='/images/noun_project_95.svg'
     input#search.prompt type='text' rel='Поиск'
+
+  div.add.collapsed
+    | Добавить деятеля
+    div.form
+      div
+        | Все введённые общественные деятели проходят модерацию перед выведением в общий список. Вы по-прежнему сможете видеть введённого вами общественного деятеля, и даже отдать свою квоту доверия.
+        | Старайтесь указывать имя и фамилию точно, в формате "Андрей Иванов", и вводить актуальную краткую информацию.
+
+      div
+        a Я - общественный деятель
+      table
+        tr
+          td.narrow
+            img.avatar src="/images/noun_project_781.svg"
+          td.narrow
+            input.prompt type='text' rel='Поиск2'
+          td
+            textarea.prompt rel='Поиск3'
+            /== f.submit 'Добавить', :class => 'button'
+    div.handle
+      div
+      div
+      div
+
   div#list
     == partial 'person/table'
 

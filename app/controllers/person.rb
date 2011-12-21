@@ -15,18 +15,6 @@ Trust.controllers :person do
     end
   end
 
-  get :new do
-    authorize! :new, Person
-    @person = Person.new
-    render 'person/new'
-  end
-
-  get :newme do
-    authorize! :newme, Person
-    @person = Person.new :name => current_account.name, :photo => current_account.avatar
-    render 'person/new'
-  end
-
   post :create do
     authorize! :create, Person
     @person = Person.new params[:person]

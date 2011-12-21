@@ -28,19 +28,21 @@ $(function() {
     })
   }
 
-  $('input#search').each(function(){
-    var prompt = $(this).attr('rel');
-    if($(this).val() == "")
-      $(this).val(prompt).addClass('prompt');
-    $(this).bind('keypress keydown change input paste', function(){
-      if($(this).val() === prompt)
-        $(this).val('').removeClass('prompt');
-    }).bind('blur', function(){
-      if($(this).val() === '')
-        $(this).val(prompt).addClass('prompt');
-    }).bind('input', function(){
-      if($(this).val() != prompt)
-        $("#list").maskedload("/?query="+$(this).val())
+  $('input#search').hidingprompt(function(val){
+    $("#list").maskedload("/?query="+val)
+  })
+
+  $('.add input.prompt').hidingprompt(function(val){
+    $("#list").maskedload("/?query="+val)
+  })
+
+  $('.add textarea.prompt').hidingprompt(function(val){
+    $("#list").maskedload("/?query="+val)
+  })
+
+  $('.collapsed').click(function(){
+    $('.collapsed .form').slideDown('veryslow', function(){
+      $('.add').removeClass('collapsed')
     })
   })
 })
