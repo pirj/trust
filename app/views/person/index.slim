@@ -5,23 +5,13 @@ div.span-17.colborder
     input#search.prompt type='text' rel='Поиск'
 
   div.add.collapsed
-    | Добавить деятеля
+    div.title Добавить деятеля
     div.form
-      div
-        | Все введённые общественные деятели проходят модерацию перед выведением в общий список. Вы по-прежнему сможете видеть введённого вами общественного деятеля, и даже отдать свою квоту доверия.
-        | Старайтесь указывать имя и фамилию точно, в формате "Андрей Иванов", и вводить актуальную краткую информацию.
-
-      div
-        a Я - общественный деятель
-      table
-        tr
-          td.narrow
-            img.avatar src="/images/noun_project_781.svg"
-          td.narrow
-            input.prompt type='text' rel='Поиск2'
-          td
-            textarea.prompt rel='Поиск3'
-            /== f.submit 'Добавить', :class => 'button'
+      div.inputs
+        img.avatar src="/images/noun_project_781.svg" alt="Фотография"
+        input.prompt type='text' rel='Фамилия Имя Отчество' name='rus'
+        textarea.prompt rel='Краткое описание' name='content'
+      input type='submit' value='Добавить'
     div.handle
       div
       div

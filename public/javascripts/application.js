@@ -32,15 +32,22 @@ $(function() {
     $("#list").maskedload("/?query="+val)
   })
 
-  $('.add input.prompt').hidingprompt(function(val){
+  $('.add input.prompt').hidingprompt(function(val){    
     $("#list").maskedload("/?query="+val)
   })
 
   $('.add textarea.prompt').hidingprompt(function(val){
-    $("#list").maskedload("/?query="+val)
+  })
+
+  $('.add .form').liveValidation({
+    validIco: '/images/jquery.liveValidation-valid.png', 
+    invalidIco: '/images/jquery.liveValidation-invalid.png', 
+    required: ['rus', 'content'],
+    fields: {rus: /^([А-ЯЁ][а-яё]+(-[А-ЯЁ][а-яё]+)*)(\s[А-ЯЁ][а-яё]+){2,}$/}
   })
 
   $('.collapsed').click(function(){
+    $('.add .title').hide()
     $('.collapsed .form').slideDown('veryslow', function(){
       $('.add').removeClass('collapsed')
     })
