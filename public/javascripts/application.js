@@ -28,17 +28,6 @@ $(function() {
     })
   }
 
-  $('input#search').hidingprompt(function(val){
-    $("#list").maskedload("/?query="+val)
-  })
-
-  $('.add input.prompt').hidingprompt(function(val){    
-    $("#list").maskedload("/?query="+val)
-  })
-
-  $('.add textarea.prompt').hidingprompt(function(val){
-  })
-
   $('.add .form').liveValidation({
     validIco: '/images/jquery.liveValidation-valid.png', 
     invalidIco: '/images/jquery.liveValidation-invalid.png', 
@@ -46,11 +35,39 @@ $(function() {
     fields: {rus: /^([А-ЯЁ][а-яё]+(-[А-ЯЁ][а-яё]+)*)(\s[А-ЯЁ][а-яё]+){2,}$/}
   })
 
+  $('.add .form input[type=submit]').click(function(){
+    
+  })
+
+  $('input#search').hidingprompt(function(val){
+    $("#list").maskedload("/?query="+val)
+  })
+
+  $('.add input.prompt').hidingprompt(function(val){    
+    $("#list").maskedload("/?query="+val, function(){
+      $('.add .form input[type=submit]').attr('disabled',
+        $('.add .form img[alt="Invalid"]').length == 0 && $('#list table tr').length == 0
+      )
+    })
+  })
+
+  $('.add textarea.prompt').hidingprompt(function(val){
+    $('.add .form input[type=submit]').attr('disabled',
+      $('.add .form img[alt="Invalid"]').length == 0 && $('#list table tr').length == 0
+    )
+  })
+
   $('.collapsed').click(function(){
     $('.add .title').hide()
     $('.collapsed .form').slideDown('veryslow', function(){
       $('.add').removeClass('collapsed')
     })
+  })
+  $('.add .form #cancel').click(function(){
+    $('.form').hide()
+    $('.add').addClass('collapsed')
+    $('.add .title').show()
+    return false
   })
 })
 
