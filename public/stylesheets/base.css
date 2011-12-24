@@ -77,6 +77,8 @@ span.rating {font-weight: bold; font-size: 200%; }
 }
 .add .inputs input, .add .inputs textarea {margin: .5em; }
 
+.yellow {background-color: yellow; }
+
 .corner-banner {
   position: absolute;
   right: -65px;

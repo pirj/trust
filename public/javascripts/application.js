@@ -35,8 +35,35 @@ $(function() {
     fields: {rus: /^([А-ЯЁ][а-яё]+(-[А-ЯЁ][а-яё]+)*)(\s[А-ЯЁ][а-яё]+){2,}$/}
   })
 
+  var close_and_reload = function(callback){
+    $('.form').hide()
+    $('.add').addClass('collapsed')
+    $('.add .title').show()
+    var query = ($('input#search').val() == $('input#search').attr('rel')) ? '' : $('input#search').val()
+    $("#list").maskedload("/?query="+query, callback)
+    return false
+  }
+
   $('.add .form input[type=submit]').click(function(){
-    
+    $.ajax({
+      url: '/person/create',
+      data: {
+        person: {
+          name: $('#name').val(),
+          bio: $('#bio').val(),
+          photo: $('#photo').val()
+        }
+      },
+      type: 'POST',
+      success: function(data){
+        close_and_reload(function(){
+          $('#list table tr').insertBefore(data)
+        })
+      },
+      error: function(xhr, status){
+        alert('fail' + status)
+      }
+    })
   })
 
   $('input#search').hidingprompt(function(val){
@@ -62,13 +89,7 @@ $(function() {
       submit_enable()
     })
   })
-  $('.add .form #cancel').click(function(){
-    $('.form').hide()
-    $('.add').addClass('collapsed')
-    $('.add .title').show()
-    $("#list").maskedload("/?query="+$('input#search').val())
-    return false
-  })
+  $('.add .form #cancel').click(close_and_reload)
 })
 
 function change_quote() {
