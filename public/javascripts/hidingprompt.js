@@ -11,8 +11,12 @@
         if($(this).val() === '')
           $(this).val(prompt).addClass('prompt');
       }).bind('input', function(){
-        if($(this).val() != prompt)
-          callback($(this).val())
+        if(callback !== undefined){
+          if($(this).val() != prompt)
+            callback($(this).val())
+          else
+            callback(null)
+        }
       })
     })
   }

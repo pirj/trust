@@ -1,8 +1,9 @@
+#coding: utf-8
 Trust.controllers :person do
   get :index, :map => '/' do
     authorize! :index, Person
 
-    @people = Person.all(:moderated => false, :creator => current_account) +
+    @people = Person.all(:name.like => "%#{params[:query]}%", :moderated => false, :creator => current_account) +
       Person.all(:name.like => "%#{params[:query]}%", :moderated => true, :order => [ :total.desc ])
 
     @votes = Hash[*Rating.all(:account => current_account, :person => @people).map do |rating|
@@ -17,15 +18,14 @@ Trust.controllers :person do
 
   post :create do
     authorize! :create, Person
-    @person = Person.new params[:person]
-    @person.photo = CGI.unescapeHTML @person.photo
+    person = params[:person]
+    @person = Person.new(:name => person[:name], :bio => person[:bio], :photo => CGI.unescapeHTML(person[:photo]))
     @person.creator = current_account
     if @person.save
-      flash[:notice] = "Saved and on moderation"
-      redirect url(:person, :index)
+      @votes = {}
+      partial 'person/row', :locals => {:person => @person, :yellow => 'yellow'}
     else
-      flash[:error] = "Not saved"
-      render 'person/new'
+      halt 406, 'Ошибка сохранения'
     end
   end
 

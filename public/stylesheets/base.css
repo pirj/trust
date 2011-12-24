@@ -23,8 +23,10 @@ span.rating {font-weight: bold; font-size: 200%; }
 }
 .header a {text-decoration: none; }
 
-.header .sub .quotes p {display: none; }
-.header .sub .quotes p.active {display: block; }
+.quotes p {display: none; }
+.quotes p.active {display: block; }
+.quotes p span {margin-bottom: 0; }
+.quotes {height: 4em; }
 
 .logins {
   position: relative;
@@ -39,7 +41,6 @@ span.rating {font-weight: bold; font-size: 200%; }
 .search input {
   font-size: 200%;
   width: 100%;
-  color: black;
 }
 
 .prompt {color: gray; }
@@ -75,6 +76,8 @@ span.rating {font-weight: bold; font-size: 200%; }
   vertical-align: middle;
 }
 .add .inputs input, .add .inputs textarea {margin: .5em; }
+
+.yellow {background-color: yellow; }
 
 .corner-banner {
   position: absolute;
