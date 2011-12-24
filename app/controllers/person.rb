@@ -25,7 +25,7 @@ Trust.controllers :person do
       @votes = {}
       partial 'person/row', :locals => {:person => @person, :yellow => 'yellow'}
     else
-      halt 401, 'Ошибка сохранения'
+      halt 406, 'Ошибка сохранения'
     end
   end
 

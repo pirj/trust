@@ -60,8 +60,8 @@ $(function() {
           $('#list table tr').insertBefore(data)
         })
       },
-      error: function(xhr, status){
-        alert('fail' + status)
+      error: function(xhr, status, error){
+        $.jGrowl(xhr.responseText)
       }
     })
   })
