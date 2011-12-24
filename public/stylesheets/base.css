@@ -27,6 +27,7 @@ span.rating {font-weight: bold; font-size: 200%; }
 .quotes p.active {display: block; }
 .quotes p span {margin-bottom: 0; }
 .quotes {height: 4em; }
+.quotes span.right {font-weight: bolder; }
 
 .logins {
   position: relative;

@@ -9,7 +9,7 @@ $(function() {
     })
   })
 
-  setTimeout("change_quote()", 10000)
+  setTimeout("change_quote()", 6000)
 
   $(".recommendations").maskedload("/rating/recommendations")
   $(".friends").maskedload("/rating/friends")
@@ -95,9 +95,13 @@ $(function() {
 function change_quote() {
   var current = $(".header .sub .quotes p.active")
   current.fadeOut("slow", function() {
-    var next = current.removeClass('active').next()
-    if(next.text() == "") next = $(".header .sub .quotes p").first()
-    next.addClass('active').fadeIn("slow")
+    current.removeClass('active')
+    var quotes = $(".header .sub .quotes p")
+    var index = Math.floor(Math.random()*quotes.length)
+    if(index == current.data('index')) index = index + 1
+    if(index >= quotes.length) index = 0
+    var next = quotes.eq(index)
+    next.addClass('active').data('index', index).fadeIn("slow")
   })
-  setTimeout("change_quote()", 10000)
+  setTimeout("change_quote()", 6000)
 }
