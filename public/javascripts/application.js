@@ -66,6 +66,7 @@ $(function() {
     $('.form').hide()
     $('.add').addClass('collapsed')
     $('.add .title').show()
+    $("#list").maskedload("/?query="+$('input#search').val())
     return false
   })
 })
