@@ -28,6 +28,7 @@ span.rating {font-weight: bold; font-size: 200%; }
 .quotes p span {margin-bottom: 0; }
 .quotes {height: 4em; }
 .quotes span.right {font-weight: bolder; }
+.quotes:hover {background-color: #f8f8f6; }
 
 .logins {
   position: relative;
