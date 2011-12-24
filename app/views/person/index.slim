@@ -9,9 +9,11 @@ div.span-17.colborder
     div.form
       div.inputs
         img.avatar src="/images/noun_project_781.svg" alt="Фотография"
-        input.prompt type='text' rel='Фамилия Имя Отчество' name='rus'
-        textarea.prompt rel='Краткое описание' name='content'
+        input#photo type='hidden'
+        input#name.prompt type='text' rel='Фамилия Имя Отчество' name='rus'
+        textarea#bio.prompt rel='Краткое описание' name='content'
       input type='submit' value='Добавить'
+      a#cancel href='#' Отмена
     div.handle
       div
       div

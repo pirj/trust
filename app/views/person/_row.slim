@@ -1,0 +1,15 @@
+tr class=yellow
+  td.narrow
+    -unless person.moderated
+      img src="/images/noun_project_727.svg" title="На модерации"
+    -if person.moderated
+      img.avatar.plus ref=person.id src=person.photo alt=person.name
+  td.ratecell.ultranarrow
+    img.tiny.rate.plus class=(@votes[person] == true ? '' : 'weak') ref=url(:rating, :plus, person.id) src="/images/noun_project_330.svg" title="Доверяю"
+    br
+    span.rating id=person.id = person.total
+    br
+    img.tiny.rate.minus class=(@votes[person] == false ? '' : 'weak') ref=url(:rating, :minus, person.id) src="/images/noun_project_339.svg" title="Не доверяю"
+  td.narrow
+    a href=url(:person, :view, person.id) = person.name
+  td = person.bio

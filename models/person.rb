@@ -4,7 +4,7 @@ class Person
 
   validates_presence_of :name, :bio
 
-  property :name, String
+  property :name, String, :unique => true
   property :bio, String
   property :photo, String, :length => 256
   property :moderated, Boolean, :default => false
