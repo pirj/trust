@@ -43,24 +43,23 @@ $(function() {
     $("#list").maskedload("/?query="+val)
   })
 
+  var submit_enable = function(){
+    $('.add .form input[type=submit]').attr('disabled',
+      ($('.add .form img[alt="Invalid"]').length > 0) || ($('#list table tr').length > 0)
+    )
+  }
+
   $('.add input.prompt').hidingprompt(function(val){    
-    $("#list").maskedload("/?query="+val, function(){
-      $('.add .form input[type=submit]').attr('disabled',
-        $('.add .form img[alt="Invalid"]').length == 0 && $('#list table tr').length == 0
-      )
-    })
+    $("#list").maskedload("/?query="+val, submit_enable)
   })
 
-  $('.add textarea.prompt').hidingprompt(function(val){
-    $('.add .form input[type=submit]').attr('disabled',
-      $('.add .form img[alt="Invalid"]').length == 0 && $('#list table tr').length == 0
-    )
-  })
+  $('.add textarea.prompt').hidingprompt(submit_enable)
 
   $('.collapsed').click(function(){
     $('.add .title').hide()
     $('.collapsed .form').slideDown('veryslow', function(){
       $('.add').removeClass('collapsed')
+      submit_enable()
     })
   })
   $('.add .form #cancel').click(function(){
