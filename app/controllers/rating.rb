@@ -8,8 +8,8 @@ Trust.controllers :rating do
         Rating.new(:person => person, :account => current_account)
     rating.positive = true
     rating.save
-    person.total = person.rating
-    person.save
+    recalculate person
+
     content_type 'text/plain'
     person.total.to_s
   end
@@ -22,8 +22,8 @@ Trust.controllers :rating do
         Rating.new(:person => person, :account => current_account)
     rating.positive = false
     rating.save
-    person.total = person.rating
-    person.save
+    recalculate person
+
     content_type 'text/plain'
     person.total.to_s
   end
@@ -47,7 +47,7 @@ Trust.controllers :rating do
     friend_ids = friends.first[1].map { |friend| friend['id'] }
     @ratings = aggregate Account.all(:uid => friend_ids).ratings
 
-    render 'rating/tableex', :layout => false
+    render 'rating/table', :layout => false
   end
 
   get :feed do

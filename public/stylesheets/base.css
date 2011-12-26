@@ -1,15 +1,20 @@
 body {overflow-x: hidden; }
 
-img.avatar {max-height: 80px; max-width: 80px; padding: 3px; border: 1px solid lightgray;}
+img.avatar {max-height: 60px; max-width: 80px; padding: 3px; border: 1px solid lightgray;}
 img.tiny {height: 20px; }
 img.nano {height: 10px; }
 
-img.tiny.rate.weak {
-  opacity: 0.4;
-  filter: alpha(opacity=40); /* For IE8 and earlier */
+.rate span {
+  font-weight: bold;
+  font-size: 200%;
+  -moz-user-select: none; -khtml-user-select: none; user-select: none;
+  cursor: pointer;
 }
 
-span.rating {font-weight: bold; font-size: 200%; }
+.rate span.plus:after {content: "▲"; }
+.rate .plus.weak:after {content: "△"; }
+.rate span.minus:after {content: "▼"; }
+.rate .minus.weak:after {content: "▽"; }
 
 .header h1 {
   height: 110px;

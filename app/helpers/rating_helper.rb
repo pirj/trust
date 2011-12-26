@@ -9,4 +9,14 @@ Trust.helpers do
       {:person => person.name, :plus => total[true], :minus => total[false]}
     end
   end
+
+  def recalculate person
+    positive = person.ratings(:positive => true).count
+    negative = person.ratings(:positive => false).count
+    person.total = positive - negative
+    person.positive = positive
+    person.negative = negative
+    person.overall = positive + negative
+    person.save
+  end
 end

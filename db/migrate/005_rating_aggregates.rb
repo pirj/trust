@@ -10,6 +10,7 @@ migration 5, :rating_aggregates do
       person.positive = person.ratings(:positive => true).count
       person.negative = person.ratings(:positive => false).count
       person.overall = person.ratings.count
+      person.save
     end
   end
 

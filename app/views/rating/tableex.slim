@@ -8,8 +8,8 @@ table
       td 
         span = rating[:plus]
         -if rating[:plus]
-          img.nano src="/images/noun_project_330.svg" title="Доверяют"
+          span title="Доверяют" == '▲'
       td
         span = rating[:minus]
         -if rating[:minus]
-          img.nano src="/images/noun_project_339.svg" title="Не доверяют"
+          span title="Не доверяют" == '▼'

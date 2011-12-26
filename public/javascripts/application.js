@@ -1,5 +1,5 @@
 $(function() {
-  $('img.rate').live('click', function() {
+  $('.rate span').live('click', function() {
     var el = $(this)
     var ref = el.attr('ref')
     $.post(ref, function(data) {
