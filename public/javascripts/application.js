@@ -90,6 +90,13 @@ $(function() {
     })
   })
   $('.add .form #cancel').click(close_and_reload)
+
+  $('.menu a.dyn').click(function(){
+    var query = ($('input#search').val() == $('input#search').attr('rel')) ? '' : $('input#search').val()
+    var filter = $(this).attr('href')
+    $("#list").maskedload(filter+"/?query="+query)    
+    return false
+  })
 })
 
 function change_quote() {

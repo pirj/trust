@@ -1,5 +1,17 @@
 div.span-17.colborder
 
+  div.menu
+    ul
+      -if can? :approve, Person
+        li
+          a href=url(:person, :suspicious) Деятели на модерацию
+      li
+        a.dyn href=url(:person, :new) Новые
+      li
+        a.dyn href=url(:person, :popular) Популряные
+      li.active
+        a.dyn href=url(:person, :top) Топ
+
   div.search
     /img.tiny src='/images/noun_project_95.svg'
     input#search.prompt type='text' rel='Поиск'

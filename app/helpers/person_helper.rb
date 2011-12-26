@@ -1,7 +1,12 @@
-# Helper methods defined here can be accessed in any controller or view in the application
-
 Trust.helpers do
-  # def simple_helper_method
-  #  ...
-  # end
+  def render_index
+    @votes = Hash[*Rating.all(:account => current_account, :person => @people).map do |rating|
+      [rating.person, rating.positive]
+    end.flatten]
+    if request.xhr?
+      partial 'person/table'
+    else
+      render 'person/index'
+    end
+  end
 end

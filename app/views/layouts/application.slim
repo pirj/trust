@@ -42,9 +42,6 @@ html
       hr
 
       div
-        -if can? :approve, Person
-          span
-            a href=url(:person, :suspicious) Деятели на модерацию
         -if can? :manage, Account
           span
             a href=url(:person, :suspicious) Управление пользователями

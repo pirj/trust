@@ -5,15 +5,35 @@ Trust.controllers :person do
 
     @people = Person.all(:name.like => "%#{params[:query]}%", :moderated => false, :creator => current_account) +
       Person.all(:name.like => "%#{params[:query]}%", :moderated => true, :order => [ :total.desc ])
+    render_index
+  end
 
-    @votes = Hash[*Rating.all(:account => current_account, :person => @people).map do |rating|
-      [rating.person, rating.positive]
-    end.flatten]
-    if request.xhr?
-      partial 'person/table'
-    else
-      render 'person/index'
-    end
+  get :suspicious do
+    authorize! :approve, Person
+
+    @people = Person.all(:moderated => false, :order => [ :updated_at.asc ])
+    render 'person/shortindex'
+  end
+
+  get :new do
+    authorize! :index, Person
+
+    @people = Person.all(:name.like => "%#{params[:query]}%", :moderated => true, :order => [ :updated_at.desc ])
+    render_index
+  end
+
+  get :popular do
+    authorize! :index, Person
+
+    @people = Person.all(:name.like => "%#{params[:query]}%", :moderated => true, :order => [ :overall.desc ])
+    render_index
+  end
+
+  get :top do
+    authorize! :index, Person
+
+    @people = Person.all(:name.like => "%#{params[:query]}%", :moderated => true, :order => [ :total.desc ])
+    render_index
   end
 
   post :create do
@@ -44,13 +64,6 @@ Trust.controllers :person do
   post :update, :with => :person_id do
     authorize! :update, Person
 
-  end
-
-  get :suspicious do
-    authorize! :approve, Person
-
-    @people = Person.all(:moderated => false, :order => [ :updated_at.asc ])
-    render 'person/shortindex'
   end
 
   post :approve, :with => :person_id do

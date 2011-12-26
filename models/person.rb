@@ -13,6 +13,10 @@ class Person
   belongs_to :creator, 'Account'
 
   property :total, Integer, :default => 0
+  property :positive, Integer, :default => 0
+  property :negative, Integer, :default => 0
+  property :overall, Integer, :default => 0
+
 
   property :deleted_at, ParanoidDateTime
   timestamps :at
