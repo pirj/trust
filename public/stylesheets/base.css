@@ -1,8 +1,9 @@
 body {overflow-x: hidden; }
 
-img.avatar {max-height: 60px; max-width: 80px; padding: 3px; border: 1px solid lightgray;}
+img.avatar {max-height: 60px; max-width: 80px; padding: 3px; border: 1px solid lightgray; }
 img.tiny {height: 20px; }
 img.nano {height: 10px; }
+img.logo {height: 80px; padding: 3px; float: left; }
 
 .rate span {
   font-weight: bold;
@@ -16,21 +17,12 @@ img.nano {height: 10px; }
 .rate span.minus:after {content: "▼"; }
 .rate .minus.weak:after {content: "▽"; }
 
-.header h1 {
-  height: 110px;
-  padding-left: 110px;
-  background: url('/images/noun_project_756.svg');
-  background-repeat: no-repeat;
-}
-.header .sub {
-  padding-left: 110px;
-  margin-top: -80px;
-}
-.header a {text-decoration: none; }
+.header span.h1 {font-size: 24px; }
+.header p {margin-left: 100px; }
 
-.quotes p {display: none; }
-.quotes p.active {display: block; }
-.quotes p span {margin-bottom: 0; }
+.quotes span {display: none; }
+.quotes span.active, .quotes span.active span {display: block; }
+.quotes span span {margin-bottom: 0; }
 .quotes {height: 4em; }
 .quotes span.right {font-weight: bolder; }
 .quotes:hover {background-color: #f8f8f6; }
