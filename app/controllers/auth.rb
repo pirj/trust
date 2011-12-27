@@ -42,7 +42,7 @@ Trust.controllers :auth do
     session[:facebook_auth_token] = token
 
     set_current_account(account)
-    redirect '/'
+    account.name
   end
 
   get :failure, :map => '/auth/failure' do

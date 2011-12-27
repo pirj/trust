@@ -11,19 +11,27 @@ $(function() {
 
   setTimeout("change_quote()", 6000)
 
-  $(".recommendations").maskedload("/rating/recommendations")
-  $(".friends").maskedload("/rating/friends")
-  $(".my").maskedload("/rating/my")
   $(".feed").maskedload("/rating/feed")
+  if($('#not_logged_in').length == 0)
+    load_feeds()
 
   FB.init({appId: '273684999345723', xfbml: true, cookie: true, oauth: true});
 
   if($('#not_logged_in').length == 1 && $('#no_auto_login').length == 0) {
     FB.getLoginStatus(function(response) {
-      if (response.status === 'connected') {
+      if(response.status === 'connected') {
         var uid = response.authResponse.userID;
         var accessToken = response.authResponse.accessToken;
-        location.href = "/auth/callback?token="+accessToken+"&uid="+uid
+        $.get("/auth/callback?token="+accessToken+"&uid="+uid, function(data, status){
+          if(status == 'success'){
+            $('div.logins').empty().append($('<span>Привествуем, </span>')).
+              append($('<span>'+data+'</span>')).
+              append($('<a href=/auth/logout>Выйти</a>'))
+            load_feeds()
+            $('.form .inputs').removeClass('hidden')
+            $('.form .inputs_not_logged').addClass('hidden')
+          }
+        })
       }
     })
   }
@@ -111,4 +119,10 @@ function change_quote() {
     next.addClass('active').data('index', index).fadeIn("slow")
   })
   setTimeout("change_quote()", 6000)
+}
+
+function load_feeds() {
+  $(".recommendations").maskedload("/rating/recommendations")
+  $(".friends").maskedload("/rating/friends")
+  $(".my").maskedload("/rating/my")
 }

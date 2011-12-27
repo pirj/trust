@@ -78,6 +78,8 @@ img.logo {height: 80px; padding: 3px; float: left; }
 
 .yellow {background-color: yellow; }
 
+.hidden {display: none; }
+
 .menu ul {list-style-type:none; margin: 0; padding: 0; }
 .menu ul li {display: inline; margin: .5em 1em .5em 0; }
 .menu ul li.active {text-decoration: underline; }
