@@ -9,7 +9,7 @@ $(function() {
     })
   })
 
-  setTimeout("change_quote()", 6000)
+  setTimeout(change_quote, 6000)
 
   $(".feed").maskedload("/rating/feed")
   if($('#not_logged_in').length == 0)
@@ -108,17 +108,17 @@ $(function() {
 })
 
 function change_quote() {
-  var current = $(".header .sub .quotes p.active")
+  var current = $(".header .quotes span.active")
   current.fadeOut("slow", function() {
     current.removeClass('active')
-    var quotes = $(".header .sub .quotes p")
+    var quotes = $(".header .quotes > span")
     var index = Math.floor(Math.random()*quotes.length)
     if(index == current.data('index')) index = index + 1
     if(index >= quotes.length) index = 0
     var next = quotes.eq(index)
     next.addClass('active').data('index', index).fadeIn("slow")
   })
-  setTimeout("change_quote()", 6000)
+  setTimeout(change_quote, 6000)
 }
 
 function load_feeds() {

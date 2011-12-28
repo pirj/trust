@@ -18,7 +18,7 @@ img.logo {height: 80px; padding: 3px; float: left; }
 .rate .minus.weak:after {content: "▽"; }
 
 .header span.h1 {font-size: 24px; }
-.header p {margin-left: 100px; }
+.header p {margin-left: 100px; height: 7em; }
 
 .quotes span {display: none; }
 .quotes span.active, .quotes span.active span {display: block; }
