@@ -9,18 +9,7 @@ class Trust < Padrino::Application
 
   enable :sessions
 #  set :sessions, true
-  set :login_page, "/auth/facebook"
-  enable :store_location
   enable :authentication
-  use OmniAuth::Builder do
-#    provider :vkontakte, ENV['API_KEY'], ENV['API_SECRET']
-    provider :facebook, '273684999345723', '1f0cd672ea60ef13aa5f21de219c56ce', :scope => 'user_relationships'
-    # offline_access
-    #, :display => 'popup'
-    # TODO: request specific facebook permissions (scope) http://developers.facebook.com/docs/reference/api/permissions/
-    # TODO: tune auth dialog type http://developers.facebook.com/docs/reference/dialogs#display
-  end
-
   use Rack::Protection
   disable :asset_stamp
 

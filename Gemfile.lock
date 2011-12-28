@@ -44,15 +44,10 @@ GEM
     do_postgres (0.10.7)
       data_objects (= 0.10.7)
     eventmachine (0.12.10)
-    faraday (0.7.5)
-      addressable (~> 2.2.6)
-      multipart-post (~> 1.1.3)
-      rack (>= 1.1.0, < 2)
     fastercsv (1.5.4)
     grit (2.4.1)
       diff-lcs (~> 1.1)
       mime-types (~> 1.15)
-    hashie (1.2.0)
     http_router (0.10.2)
       rack (>= 1.0.0)
       url_mount (~> 0.2.1)
@@ -68,18 +63,6 @@ GEM
     mime-types (1.17.2)
     multi_json (1.0.4)
     multi_xml (0.4.1)
-    multipart-post (1.1.4)
-    oauth2 (0.5.1)
-      faraday (~> 0.7.4)
-      multi_json (~> 1.0.3)
-    omniauth (1.0.1)
-      hashie (~> 1.2)
-      rack
-    omniauth-facebook (1.1.0)
-      omniauth-oauth2 (~> 1.0.0)
-    omniauth-oauth2 (1.0.0)
-      oauth2 (~> 0.5.0)
-      omniauth (~> 1.0)
     padrino (0.10.5)
       padrino-admin (= 0.10.5)
       padrino-cache (= 0.10.5)
@@ -166,8 +149,6 @@ DEPENDENCIES
   dm-types
   dm-validations
   httparty
-  omniauth
-  omniauth-facebook
   padrino (= 0.10.5)
   padrino-cancan
   pg

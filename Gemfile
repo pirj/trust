@@ -21,10 +21,6 @@ gem 'padrino', '0.10.5'
 gem 'rack-protection'
 gem 'padrino-cancan'
 
-gem 'omniauth'
-gem 'omniauth-facebook'
-#gem 'omniauth-vkontakte'
-
 gem 'httparty'
 
 # Test requirements
