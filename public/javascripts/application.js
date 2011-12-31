@@ -23,15 +23,15 @@ $(function() {
     return false
   })
 
-  VK.init({apiId: '2738008'}) // 2737052 for staging
-  VK.Auth.getLoginStatus(vk_auth, true)
-  VK.UI.button('vklogin')
 
+//  VK.init({apiId: '2738008'}) // 2737052 for staging
+//  VK.Auth.getLoginStatus(vk_auth, true)
+//  VK.UI.button('vklogin')
 
-  $('#vklogin').click(function(){
-    VK.Auth.login(vk_auth)
-    return false
-  })
+//  $('#vklogin').click(function(){
+//    VK.Auth.login(vk_auth)
+//    return false
+//  })
 
   $('.add .form').liveValidation({
     validIco: '/images/jquery.liveValidation-valid.png', 
