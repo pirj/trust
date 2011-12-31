@@ -4,11 +4,11 @@ class Facebook
 end
 
 Trust.controllers :auth do
-  get :callback do
+  get :facebook do
     token = params[:token]
     uid = params[:uid]
 
-    account = Account.first(:uid => uid)
+    account = Account.first(:uid => uid, :provider => 'facebook')
     if account.nil? then
       user = MultiJson.decode HTTParty.get("https://graph.facebook.com/me?access_token=#{token}").body
       avatar = Facebook.get("https://graph.facebook.com/me/picture?access_token=#{token}&type=square").headers['location']
@@ -25,8 +25,22 @@ Trust.controllers :auth do
     account.name
   end
 
-  get :failure, :map => '/auth/failure' do
-    content_type 'application/json'
-    MultiJson.encode(request.env['omniauth.auth'])
+  get :vk do
+    sig = params[:sig]
+    uid = params[:uid]
+
+    account = Account.first(:uid => uid, :provider => 'vk')
+    if account.nil? then
+      account = Account.create(:uid => uid, :provider => 'vk', :name => user['name'], :avatar => avatar, :role => :user)
+    end
+
+    if account.uid == '914148' and account.role != :admin then
+      account.role = :admin
+      account.save
+    end
+    session[:vk_auth_sig] = sig
+
+    set_current_account(account)
+    'ok'
   end
 end

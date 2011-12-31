@@ -23,6 +23,16 @@ $(function() {
     return false
   })
 
+  VK.init({apiId: '2738008'}) // 2737052 for staging
+  VK.Auth.getLoginStatus(vk_auth, true)
+  VK.UI.button('vklogin')
+
+
+  $('#vklogin').click(function(){
+    VK.Auth.login(vk_auth)
+    return false
+  })
+
   $('.add .form').liveValidation({
     validIco: '/images/jquery.liveValidation-valid.png', 
     invalidIco: '/images/jquery.liveValidation-invalid.png', 
@@ -98,9 +108,27 @@ function facebook_auth(response){
   if (response.authResponse) {
     var uid = response.authResponse.userID;
     var token = response.authResponse.accessToken;
-    $.get("/auth/callback?token="+token+"&uid="+uid, function(data, status){
+    $.get("/auth/facebook?token="+token+"&uid="+uid, function(data, status){
       if(status == 'success'){
         $('div.logins').empty().append($('<span>Привествуем, </span>')).
+          append($('<span>'+data+'</span>'))
+        load_feeds()
+        $('.form .inputs').removeClass('hidden')
+        $('.form .inputs_not_logged').addClass('hidden')
+      }
+    })
+  }
+}
+
+function vk_auth(response) {
+  if (response.status === 'connected') {
+    var uid = response.session.mid
+    var sig = response.session.sig
+    var sid = response.session.sid
+    var name = response.session.user.first_name + ' ' + response.session.user.last_name
+    $.get("/auth/vk?sig="+sig+"&sid="+sid+"&uid="+uid, function(data, status){
+      if(status == 'success'){
+        $('div.logins').append($('<span>Привествуем, </span>')).
           append($('<span>'+data+'</span>'))
         load_feeds()
         $('.form .inputs').removeClass('hidden')

@@ -5,7 +5,7 @@ html
     meta name="keywords" content="Рейтинг доверия Народный рейтинг общественных деятелей политик политика"
     meta property="fb:app_id" content="273684999345723"
     == javascript_include_tag 'jquery.min.js', 'jquery.loadmask.min.js', 'jquery.liveValidation.js', 'jquery.jgrowl_minimized.js', 'maskedload', 'hidingprompt', 'application'
-    == javascript_include_tag '//connect.facebook.net/ru_RU/all.js'
+    == javascript_include_tag '//connect.facebook.net/ru_RU/all.js', '//vkontakte.ru/js/api/openapi.js'
     == stylesheet_link_tag 'grid', 'typography', 'forms', 'jquery.loadmask.css', 'jquery.jgrowl.css','base'
 
   body
@@ -19,6 +19,7 @@ html
         -if current_account.nil?
           div#not_logged_in
           a.fblogin href='#' Войти с помощью Facebook
+          a#vklogin Войти с помощью ВКонтакте
         -unless current_account.nil?
           span Привествуем, 
           span = current_account.name
