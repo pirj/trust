@@ -29,19 +29,16 @@ def publish message, ratings, login
   result = MultiJson.decode reply.body
   ratings.each do |r| r.published = true; r.save end unless result['error'].nil?
   puts "error: #{result['error']}" unless result['error'].nil?
-  puts (result['error'].nil? ? ratings.length : 0)
-  return result['error'].nil? ? ratings.length : 0
 end
 
 ##
 # Find all unpublished Ratings, get user tokens, and publish to wall
 logins = Rating.all(:published.not => true).accounts.logins(:token.not => nil)
 
-published = logins.map do |login|
+logins.each do |login|
   ratings = login.account.ratings(:published.not => true)
   positive = ratings.reject {|r| !r.positive}
   negative = ratings - positive
-  publish("Я выразил доверие", positive, login) + publish("Я выразил недоверие", negative, login)
-end.inject(:+)
-
-puts "Published #{published} ratings"
+  publish("Я выразил доверие", positive, login)
+  publish("Я выразил недоверие", negative, login)
+end
