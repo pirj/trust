@@ -24,7 +24,7 @@ $(function() {
   })
 
 
-  VK.init({apiId: '2738008'}) // 2737052 for staging
+  VK.init({apiId: '2737052'}) // 2738008 for localhost
   VK.Auth.getLoginStatus(vk_auth, true)
   VK.UI.button('vklogin')
 
