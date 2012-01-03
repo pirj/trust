@@ -155,3 +155,13 @@ function load_feeds() {
   $(".friends").maskedload("/rating/friends")
   $(".my").maskedload("/rating/my")
 }
+
+var reformalOptions = {
+  project_id: 52686,
+  project_host: "grajdanin.reformal.ru",
+  force_new_window: false,
+  tab_alignment: "left",
+  tab_top: "300",
+  tab_bg_color: "#F08200",
+  tab_image_url: "http://tab.reformal.ru/0JLQsNGI0Lgg0L7RgtC30YvQstGLINC4INC%252F0YDQtdC00LvQvtC20LXQvdC40Y8=/f0f0f0/a18926533175bec9e0a554c5d211faa0"
+}
