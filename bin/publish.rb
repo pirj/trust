@@ -36,13 +36,12 @@ end
 # Find all unpublished Ratings, get user tokens, and publish to wall
 logins = Rating.all(:published.not => true).accounts.logins(:token.not => nil)
 
-published = 0
-logins.each do |login|
+published = logins.map do |login|
   ratings = login.account.ratings(:published.not => true)
   positive = ratings.reject {|r| !r.positive}
   negative = ratings - positive
-  published = published + publish("Я выразил доверие", positive, login)
-  published = published + publish("Я выразил недоверие", negative, login)
-end
+  publish("Я выразил доверие", positive, login) +
+    publish("Я выразил недоверие", negative, login)
+end.inject(:+)
 
 puts "Published #{published} ratings"
