@@ -53,6 +53,9 @@ Trust.controllers :person do
     authorize! :view, Person
     @person = Person.get params[:person_id]
     halt 404 if @person.nil?
+    vote = Rating.first :person => @person, :account => current_account
+    @positive = !vote.nil? && vote.positive
+    @negative = !vote.nil? && !vote.positive
     render 'person/view'
   end
 

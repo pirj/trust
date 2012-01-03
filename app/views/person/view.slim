@@ -3,8 +3,13 @@ div
   -if @person.moderated
     img src=@person.photo
   -unless @person.moderated
-    a href=@person.photo Ссылка на фото
+    -if can?(:approve, Person) and !@person.moderated
+      a href=@person.photo Ссылка на фото
     img src="/images/noun_project_727.svg" title="На модерации"
+  p.rate.ultranarrow
+    span.plus ref=url(:rating, :plus, @person.id) title="Доверяю" class=(@positive == true ? '' : 'weak')
+    span.rating id=@person.id title="▲ #{@person.positive} ▼ #{@person.negative}" == @person.total
+    span.minus ref=url(:rating, :minus, @person.id) title="Не доверяю" class=(@negative == true ? '' : 'weak')
   p = @person.bio
   -if can?(:approve, Person) and !@person.moderated
     form method='post' action=url(:person, :approve, @person.id)
