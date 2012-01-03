@@ -27,7 +27,7 @@ def publish message, ratings, login
   link = "http://grajdanin.org/person/view/#{ratings.first.person_id}"
   reply = HTTParty.post("https://graph.facebook.com/#{login.uid}/feed", :body => {:access_token => login.token, :message => post, :link => link})
   result = MultiJson.decode reply.body
-  ratings.each do |r| r.published = true; r.save end unless result['error'].nil?
+  ratings.each do |r| r.published = true; r.save end if result['error'].nil?
   puts "error: #{result['error']}" unless result['error'].nil?
 end
 
