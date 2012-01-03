@@ -4,6 +4,7 @@ class NoRedirects
 end
 
 Trust.controllers :auth do
+  # TODO: when a user log in with additional login and account exists, glue accounts
   get :facebook do
     token = params[:token]
     uid = params[:uid]
@@ -12,7 +13,9 @@ Trust.controllers :auth do
     if login.nil? then
       user = MultiJson.decode HTTParty.get("https://graph.facebook.com/me?access_token=#{token}").body
       avatar = NoRedirects.get("https://graph.facebook.com/me/picture?access_token=#{token}&type=square").headers['location']
-      account = Account.create :role => :user
+      logger.error "fb current_account = #{current_account}"
+      account = current_account || Account.create(:role => :user)
+      logger.error "fb account = #{account}"
       login = Login.create(:account => account, :uid => uid, :provider => 'facebook', :name => user['name'], :avatar => avatar)
     end
 
@@ -36,7 +39,9 @@ Trust.controllers :auth do
 
     login = Login.first(:uid => uid, :provider => 'vk')
     if login.nil? then
-      account = Account.create :role => :user
+      logger.error "vk current_account = #{current_account}"
+      account = current_account || Account.create(:role => :user)
+      logger.error "vk account = #{account}"
       login = Login.create(:account => account, :uid => uid, :provider => 'vk', :name => name, :avatar => '')
     end
 
@@ -46,7 +51,7 @@ Trust.controllers :auth do
     end
     session[:vk_auth_sig] = sig
 
-    #set_current_account(account)
+    set_current_account(login.account)
     login.name
   end
 end

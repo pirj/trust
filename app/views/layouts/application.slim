@@ -18,8 +18,6 @@ html
       div.logins
         -if current_account.nil?
           div#not_logged_in
-        -unless current_account.nil?
-          span Привествуем, 
         div.fb
           -if current_account.nil? || current_account.logins(:provider => :facebook).empty?
             a.fblogin href='#' Войти с помощью Facebook
