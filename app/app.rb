@@ -54,6 +54,4 @@ class Trust < Padrino::Application
   DataMapper::Pagination.defaults[:first_text] = '⇤'
   DataMapper::Pagination.defaults[:last_text] = '⇥'
   DataMapper::Pagination.defaults[:per_page] = 15
-
-  BASE_HOST = "http://grajdanin.heroku.com"
 end

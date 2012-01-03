@@ -10,11 +10,6 @@ Trust.controllers :rating do
     rating.save
     recalculate person
 
-    message = "Я выразил доверие #{person.name} на Народном рейтинге"
-    link = Trust::BASE_HOST + url(:person, :view, person.id)
-    rep = HTTParty.post("https://graph.facebook.com/#{current_account.uid}/feed",
-      :body => {:access_token => session[:facebook_auth_token], :message => message, :link => link, :name => person.name})
-
     content_type 'text/plain'
     person.total.to_s
   end
@@ -28,11 +23,6 @@ Trust.controllers :rating do
     rating.positive = false
     rating.save
     recalculate person
-
-    message = "Я выразил недоверие #{person.name} на Народном рейтинге"
-    link = Trust::BASE_HOST + url(:person, :view, person.id)
-    rep = HTTParty.post("https://graph.facebook.com/#{current_account.uid}/feed",
-      :body => {:access_token => session[:facebook_auth_token], :message => message, :link => link, :name => person.name})
 
     content_type 'text/plain'
     person.total.to_s
@@ -54,7 +44,7 @@ Trust.controllers :rating do
     @title = "Друзья"
     friends = MultiJson.decode(HTTParty.get("https://graph.facebook.com/me/friends?access_token=#{session[:facebook_auth_token]}").body)
       .first[1].map { |friend| friend['id'] }
-    @ratings = aggregate Account.all(:uid => friends).ratings
+    @ratings = aggregate Login.all(:provider => :facebook, :uid => friends).account.ratings
     render 'rating/table', :layout => false
   end
 

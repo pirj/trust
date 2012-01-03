@@ -24,14 +24,14 @@ $(function() {
   })
 
 
-//  VK.init({apiId: '2738008'}) // 2737052 for staging
-//  VK.Auth.getLoginStatus(vk_auth, true)
-//  VK.UI.button('vklogin')
+  VK.init({apiId: '2738008'}) // 2737052 for staging
+  VK.Auth.getLoginStatus(vk_auth, true)
+  VK.UI.button('vklogin')
 
-//  $('#vklogin').click(function(){
-//    VK.Auth.login(vk_auth)
-//    return false
-//  })
+  $('#vklogin').click(function(){
+    VK.Auth.login(vk_auth)
+    return false
+  })
 
   $('.add .form').liveValidation({
     validIco: '/images/jquery.liveValidation-valid.png', 
@@ -110,8 +110,7 @@ function facebook_auth(response){
     var token = response.authResponse.accessToken;
     $.get("/auth/facebook?token="+token+"&uid="+uid, function(data, status){
       if(status == 'success'){
-        $('div.logins').empty().append($('<span>Привествуем, </span>')).
-          append($('<span>'+data+'</span>'))
+        $('div.logins.fb').empty().append($('<span>'+data+'</span>'))
         load_feeds()
         $('.form .inputs').removeClass('hidden')
         $('.form .inputs_not_logged').addClass('hidden')

@@ -9,4 +9,6 @@ class Rating
 
   property :deleted_at, ParanoidDateTime
   timestamps :at
+
+  property :published, Boolean, :default => false
 end

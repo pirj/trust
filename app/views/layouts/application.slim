@@ -18,11 +18,20 @@ html
       div.logins
         -if current_account.nil?
           div#not_logged_in
-          a.fblogin href='#' Войти с помощью Facebook
-          a#vklogin Войти с помощью ВКонтакте
         -unless current_account.nil?
           span Привествуем, 
-          span = current_account.name
+        div.fb
+          -if current_account.nil? || current_account.logins(:provider => :facebook).empty?
+            a.fblogin href='#' Войти с помощью Facebook
+          -unless current_account.nil? || current_account.logins(:provider => :facebook).empty?
+            img.tiny src=current_account.logins(:provider => :facebook).first.avatar
+            span = current_account.logins(:provider => :facebook).first.name
+        div.vk
+          -if current_account.nil? || current_account.logins(:provider => :vk).empty?
+            a#vklogin href='#' Войти с помощью Вконтакте
+          -unless current_account.nil? || current_account.logins(:provider => :vk).empty?
+            img.tiny src=current_account.logins(:provider => :vk).first.avatar
+            span = current_account.logins(:provider => :vk).first.name
 
       div.header
         img.logo src='/images/noun_project_756.svg'

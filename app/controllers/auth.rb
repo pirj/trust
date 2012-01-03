@@ -5,43 +5,47 @@ end
 
 Trust.controllers :auth do
   get :facebook do
-    logger.error params[:token]
     token = params[:token]
     uid = params[:uid]
 
-    account = Account.first(:uid => uid, :provider => 'facebook')
-    if account.nil? then
+    login = Login.first(:uid => uid, :provider => 'facebook')
+    if login.nil? then
       user = MultiJson.decode HTTParty.get("https://graph.facebook.com/me?access_token=#{token}").body
       avatar = NoRedirects.get("https://graph.facebook.com/me/picture?access_token=#{token}&type=square").headers['location']
-      account = Account.create(:uid => uid, :provider => 'facebook', :name => user['name'], :avatar => avatar, :role => :user)
+      account = Account.create :role => :user
+      login = Login.create(:account => account, :uid => uid, :provider => 'facebook', :name => user['name'], :avatar => avatar)
     end
 
-    if account.uid == '1330077461' and account.role != :admin then
-      account.role = :admin
-      account.save
+    if login.uid == '1330077461' and login.account.role != :admin then
+      login.account.role = :admin
+      login.account.save
     end
 
     session[:facebook_auth_token] = token
-    set_current_account(account)
-    account.name
+    login.token = token
+    login.save
+
+    set_current_account(login.account)
+    login.name
   end
 
   get :vk do
     sig = params[:sig]
     uid = params[:uid]
 
-    account = Account.first(:uid => uid, :provider => 'vk')
-    if account.nil? then
-      account = Account.create(:uid => uid, :provider => 'vk', :name => 'name', :avatar => '', :role => :user)
+    login = Login.first(:uid => uid, :provider => 'vk')
+    if login.nil? then
+      account = Account.create :role => :user
+      login = Login.create(:account => account, :uid => uid, :provider => 'vk', :name => 'name', :avatar => '')
     end
 
-    if account.uid == '914148' and account.role != :admin then
-      account.role = :admin
-      account.save
+    if login.uid == '914148' and login.account.role != :admin then
+      login.account.role = :admin
+      login.account.save
     end
     session[:vk_auth_sig] = sig
 
     #set_current_account(account)
-    'ok'
+    login.name
   end
 end
