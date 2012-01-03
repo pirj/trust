@@ -28,7 +28,7 @@ def publish message, ratings, login
   reply = HTTParty.post("https://graph.facebook.com/#{login.uid}/feed", :body => {:access_token => login.token, :message => post, :link => link})
   result = MultiJson.decode reply.body
   ratings.each do |r| r.published = true; r.save end unless result['error'].nil?
-  puts "error: #{result['error']}" if result['error'].nil?
+  puts "error: #{result['error']}" unless result['error'].nil?
   puts (result['error'].nil? ? ratings.length : 0)
   return result['error'].nil? ? ratings.length : 0
 end
@@ -41,8 +41,7 @@ published = logins.map do |login|
   ratings = login.account.ratings(:published.not => true)
   positive = ratings.reject {|r| !r.positive}
   negative = ratings - positive
-  publish("Я выразил доверие", positive, login) +
-    publish("Я выразил недоверие", negative, login)
+  publish("Я выразил доверие", positive, login) + publish("Я выразил недоверие", negative, login)
 end.inject(:+)
 
 puts "Published #{published} ratings"
