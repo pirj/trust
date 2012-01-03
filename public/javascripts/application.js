@@ -104,13 +104,13 @@ $(function() {
   })
 })
 
-function facebook_auth(response){
+function facebook_auth(response) {
   if (response.authResponse) {
     var uid = response.authResponse.userID;
     var token = response.authResponse.accessToken;
     $.get("/auth/facebook?token="+token+"&uid="+uid, function(data, status){
       if(status == 'success'){
-        $('div.logins.fb').empty().append($('<span>'+data+'</span>'))
+        $('div.logins .fb').empty().append($('<span>'+data+'</span>'))
         load_feeds()
         $('.form .inputs').removeClass('hidden')
         $('.form .inputs_not_logged').addClass('hidden')
@@ -125,10 +125,9 @@ function vk_auth(response) {
     var sig = response.session.sig
     var sid = response.session.sid
     var name = response.session.user.first_name + ' ' + response.session.user.last_name
-    $.get("/auth/vk?sig="+sig+"&sid="+sid+"&uid="+uid, function(data, status){
+    $.get("/auth/vk?sig="+sig+"&sid="+sid+"&uid="+uid+"&name="+name, function(data, status){
       if(status == 'success'){
-        $('div.logins').append($('<span>Привествуем, </span>')).
-          append($('<span>'+data+'</span>'))
+        $('div.logins .vk').empty().append($('<span>'+data+'</span>'))
         load_feeds()
         $('.form .inputs').removeClass('hidden')
         $('.form .inputs_not_logged').addClass('hidden')

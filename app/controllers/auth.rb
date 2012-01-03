@@ -32,11 +32,12 @@ Trust.controllers :auth do
   get :vk do
     sig = params[:sig]
     uid = params[:uid]
+    name = params[:name]
 
     login = Login.first(:uid => uid, :provider => 'vk')
     if login.nil? then
       account = Account.create :role => :user
-      login = Login.create(:account => account, :uid => uid, :provider => 'vk', :name => 'name', :avatar => '')
+      login = Login.create(:account => account, :uid => uid, :provider => 'vk', :name => name, :avatar => '')
     end
 
     if login.uid == '914148' and login.account.role != :admin then
