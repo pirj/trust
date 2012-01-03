@@ -29,7 +29,7 @@ def publish message, ratings, login
   result = MultiJson.decode reply.body
   ratings.each do |r| r.published = true; r.save end unless result['error'].nil?
   puts "error: #{result['error']}" if result['error'].nil?
-  result['error'].nil? ? ratings.length : 0
+  return result['error'].nil? ? ratings.length : 0
 end
 
 ##
