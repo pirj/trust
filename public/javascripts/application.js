@@ -1,3 +1,4 @@
+function js_ready(){
 $(function() {
   $('.rate span').live('click', function() {
     var el = $(this)
@@ -15,30 +16,22 @@ $(function() {
   if($('#not_logged_in').length == 0)
     load_feeds()
 
-  FB.init({appId: '273684999345723', xfbml: true, cookie: true, oauth: true})
-  FB.Event.subscribe('auth.statusChange', facebook_auth)
-
   $('.fblogin').click(function(){
     FB.login({scope : 'user_relationships,publish_stream,offline_access'})
     return false
   })
-
-
-  VK.init({apiId: '2737052'}) // 2738008 for localhost
-  VK.Auth.getLoginStatus(vk_auth, true)
-  VK.UI.button('vklogin')
 
   $('#vklogin').click(function(){
     VK.Auth.login(vk_auth)
     return false
   })
 
-  $('.add .form').liveValidation({
-    validIco: '/images/jquery.liveValidation-valid.png', 
-    invalidIco: '/images/jquery.liveValidation-invalid.png', 
-    required: ['rus', 'content'],
-    fields: {rus: /^([А-ЯЁ][а-яё]+(-[А-ЯЁ][а-яё]+)*)(\s[А-ЯЁ][а-яё]+){2,}$/}
-  })
+  // $('.add .form').liveValidation({
+  //   validIco: '/images/jquery.liveValidation-valid.png', 
+  //   invalidIco: '/images/jquery.liveValidation-invalid.png', 
+  //   required: ['rus', 'content'],
+  //   fields: {rus: /^([А-ЯЁ][а-яё]+(-[А-ЯЁ][а-яё]+)*)(\s[А-ЯЁ][а-яё]+){2,}$/}
+  // })
 
   var close_and_reload = function(callback){
     $('.form').hide()
@@ -103,6 +96,7 @@ $(function() {
     return false
   })
 })
+}
 
 function facebook_auth(response) {
   if (response.authResponse) {
@@ -138,7 +132,7 @@ function vk_auth(response) {
 
 function change_quote() {
   var current = $(".header .quotes span.active")
-  current.fadeOut("slow", function() {
+  current.hide(.5, function() {
     current.removeClass('active')
     var quotes = $(".header .quotes > span")
     var index = Math.floor(Math.random()*quotes.length)
@@ -154,14 +148,4 @@ function load_feeds() {
   $(".recommendations").maskedload("/rating/recommendations")
   $(".friends").maskedload("/rating/friends")
   $(".my").maskedload("/rating/my")
-}
-
-var reformalOptions = {
-  project_id: 52686,
-  project_host: "grajdanin.reformal.ru",
-  force_new_window: false,
-  tab_alignment: "left",
-  tab_top: "300",
-  tab_bg_color: "#F08200",
-  tab_image_url: "http://tab.reformal.ru/0JLQsNGI0Lgg0L7RgtC30YvQstGLINC4INC%252F0YDQtdC00LvQvtC20LXQvdC40Y8=/f0f0f0/a18926533175bec9e0a554c5d211faa0"
 }
