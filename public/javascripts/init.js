@@ -6,8 +6,7 @@ yepnope([
     complete: function(){
       if(!window.jQuery){
         window.jQuery = window.Zepto
-        $.fn.removeData=function() {}
-        $.merge=function() {}
+        $.fn.removeData=function() {} // Zepto is missing this
       } 
     }
   },
@@ -36,9 +35,10 @@ yepnope({
 yepnope({
   load: ['//vkontakte.ru/js/api/openapi.js'],
   complete: function(){
-    VK.init({apiId: '2737052'}) // 2738008 for localhost
+    if(location.href.match(/localhost/)) VK.init({apiId: '2738008'})
+    else VK.init({apiId: '2737052'})
     VK.Auth.getLoginStatus(vk_auth, true)
-    VK.UI.button('vklogin')
+//    VK.UI.button('vklogin')
   }
 })
 
