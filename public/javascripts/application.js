@@ -10,7 +10,7 @@ $(function() {
     })
   })
 
-  setTimeout(change_quote, 6000)
+  var timer_id = setTimeout(function(){change_quote(timer_id)}, 6000)
 
   $(".feed").maskedload("/rating/feed")
   if($('#not_logged_in').length == 0)
@@ -130,7 +130,8 @@ function vk_auth(response) {
   }
 }
 
-function change_quote() {
+function change_quote(timer_id) {
+  clearTimeout(timer_id)
   var current = $(".header .quotes span.active")
   current.hide(.5, function() {
     current.removeClass('active')
@@ -140,8 +141,8 @@ function change_quote() {
     if(index >= quotes.length) index = 0
     var next = quotes.eq(index)
     next.addClass('active').data('index', index).fadeIn("slow")
+    var new_timer_id = setInterval(function(){change_quote(new_timer_id)}, 6000)
   })
-  setTimeout(change_quote, 6000)
 }
 
 function load_feeds() {
