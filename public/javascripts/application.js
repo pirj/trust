@@ -34,14 +34,13 @@ $(function() {
   // })
 
   var close_and_reload = function(callback){
-    $('.form').hide(.5, function(){
+    $('.form').hide('slow', function(){
       $('.add').addClass('collapsed')
-      $('.add .title').show()
+      $('.add .title').show('fast')
     })
 
     var query = ($('input#search').val() == $('input#search').attr('rel')) ? '' : $('input#search').val()
     $("#list").maskedload("/?query="+query, callback)
-    return false
   }
 
   $('.add .form input[type=submit]').click(function(){
@@ -89,7 +88,7 @@ $(function() {
       submit_enable()
     })
   })
-  $('.add .form #cancel').click(function(){close_and_reload()})
+  $('.add .form #cancel').click(function(){close_and_reload(); return false})
 
   $('.menu a.dyn').click(function(){
     var query = ($('input#search').val() == $('input#search').attr('rel')) ? '' : $('input#search').val()
