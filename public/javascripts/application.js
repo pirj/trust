@@ -34,9 +34,11 @@ $(function() {
   // })
 
   var close_and_reload = function(callback){
-    $('.form').hide()
-    $('.add').addClass('collapsed')
-    $('.add .title').show()
+    $('.form').hide(.5, function(){
+      $('.add').addClass('collapsed')
+      $('.add .title').show()
+    })
+
     var query = ($('input#search').val() == $('input#search').attr('rel')) ? '' : $('input#search').val()
     $("#list").maskedload("/?query="+query, callback)
     return false
@@ -82,12 +84,12 @@ $(function() {
 
   $('.collapsed').click(function(){
     $('.add .title').hide()
-    $('.collapsed .form').slideDown('veryslow', function(){
+    $('.collapsed .form').show('veryslow', function(){
       $('.add').removeClass('collapsed')
       submit_enable()
     })
   })
-  $('.add .form #cancel').click(close_and_reload)
+  $('.add .form #cancel').click(function(){close_and_reload()})
 
   $('.menu a.dyn').click(function(){
     var query = ($('input#search').val() == $('input#search').attr('rel')) ? '' : $('input#search').val()

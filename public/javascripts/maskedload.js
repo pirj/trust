@@ -3,7 +3,7 @@
     this.each(function() {
       $(this).load(url, function() {
         $(this).unmask()
-        if(callback !== undefined) callback()
+        callback && callback()
       }).mask("Подождите, идёт загрузка ...")
     })
   }
