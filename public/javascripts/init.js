@@ -2,7 +2,7 @@ yepnope([
   { // JQuery or Zepto
     test: !+"\v1", // IE?
     yep: '/javascripts/jquery-min.js',
-    nope: '/javascripts/zepto.min.js',
+    nope: ['/javascripts/zepto.min.js', '/javascripts/zepto.fx_methods.js'],
     complete: function(){
       if(!window.jQuery){
         window.jQuery = window.Zepto
