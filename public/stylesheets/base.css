@@ -48,7 +48,6 @@ img.logo {height: 80px; padding: 3px; float: left; }
 .comments {padding: 25px; }
 
 .add {
-  -moz-user-select: none; -khtml-user-select: none; user-select: none;
   border: 1px solid gray;
   background-color: #dfb;
   padding: .5em 0 .2em 0;
