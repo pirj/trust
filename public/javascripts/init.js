@@ -11,8 +11,7 @@ yepnope([
     }
   },
 // Plugins
-  ['/javascripts/jquery.loadmask.min.js', '/javascripts/jquery.jgrowl_minimized.js', '/javascripts/maskedload.js', '/javascripts/hidingprompt.js'],
-  //'/javascripts/jquery.liveValidation.js', 
+  ['/javascripts/jquery.loadmask.min.js', '/javascripts/jquery.jgrowl_minimized.js', '/javascripts/maskedload.js', '/javascripts/hidingprompt.js', '/javascripts/validate.js'],
   {
     load: '/javascripts/application.js',
     callback: function(){js_ready()}

@@ -84,6 +84,9 @@ img.logo {height: 80px; padding: 3px; float: left; }
 .menu ul li {display: inline; margin: .5em 1em .5em 0; }
 .menu ul li.active {text-decoration: underline; }
 
+.valid {border: 1px solid green !important; }
+.invalid {border: 2px solid red !important; }
+
 .corner-banner {
   position: absolute;
   right: -65px;

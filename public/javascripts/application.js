@@ -26,13 +26,6 @@ $(function() {
     return false
   })
 
-  // $('.add .form').liveValidation({
-  //   validIco: '/images/jquery.liveValidation-valid.png', 
-  //   invalidIco: '/images/jquery.liveValidation-invalid.png', 
-  //   required: ['rus', 'content'],
-  //   fields: {rus: /^([А-ЯЁ][а-яё]+(-[А-ЯЁ][а-яё]+)*)(\s[А-ЯЁ][а-яё]+){2,}$/}
-  // })
-
   var close_and_reload = function(callback){
     $('.form').hide('slow', function(){
       $('.add').addClass('collapsed')
@@ -63,29 +56,25 @@ $(function() {
         $.jGrowl(xhr.responseText)
       }
     })
+    return false;
   })
 
   $('input#search').hidingprompt(function(val){
     $("#list").maskedload("/?query="+val)
   })
 
-  var submit_enable = function(){
-    $('.add .form input[type=submit]').attr('disabled',
-      ($('.add .form img[alt="Invalid"]').length > 0) || ($('#list table tr').length > 0)
-    )
-  }
+  $('input#name').validate(/^([А-ЯЁ][а-яё]+(-[А-ЯЁ][а-яё]+)*)(\s[А-ЯЁ][а-яё]+){2,}$/)
+  $('textarea#bio').validate(/^(.){1,255}$/)
 
-  $('.add input.prompt').hidingprompt(function(val){    
-    $("#list").maskedload("/?query="+val, submit_enable)
+  $('input#name').hidingprompt(function(val){    
+    $("#list").maskedload("/?query="+val)
   })
-
-  $('.add textarea.prompt').hidingprompt(submit_enable)
+  $('textarea#bio').hidingprompt()
 
   $('.collapsed').click(function(){
     $('.add .title').hide()
     $('.collapsed .form').show('veryslow', function(){
       $('.add').removeClass('collapsed')
-      submit_enable()
     })
   })
   $('.add .form #cancel').click(function(){close_and_reload(); return false})
