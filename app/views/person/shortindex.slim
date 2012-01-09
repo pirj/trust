@@ -4,8 +4,6 @@ div.span-17.colborder
     table
       - for person in @people do
         tr
-          td
-            a href=person.photo Ссылка на аватар
           td.narrow
             a href=url(:person, :view, person.id) = person.name
           td = person.bio
