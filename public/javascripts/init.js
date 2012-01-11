@@ -1,6 +1,6 @@
 yepnope([
   { // JQuery or Zepto
-    test: navigator.appName.match(/Explorer/), // IE?
+    test: true, //navigator.appName.match(/Explorer/), // IE?
     yep: '/javascripts/jquery.min.js',
     nope: ['/javascripts/zepto.min.js', '/javascripts/zepto.fx_methods.js'],
     complete: function(){

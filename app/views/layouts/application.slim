@@ -7,37 +7,43 @@ html
     == stylesheet_link_tag 'grid', 'forms', 'typography', 'base'
 
   body
+    div#fb-root
+
     div.container
-      div#fb-root
       a href="https://github.com/pirj/trust"
         img style="position: absolute; top: 0; left: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/edc6dae7a1079163caf7f17c60495bbb6d027c93/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub"
 
-      div.logins
-        -if current_account.nil?
-          div#not_logged_in
-        div.fb
-          -if current_account.nil? || current_account.logins(:provider => :facebook).empty?
-            a.fblogin href='#' Войти с помощью Facebook
-          -unless current_account.nil? || current_account.logins(:provider => :facebook).empty?
-            img.tiny src=current_account.logins(:provider => :facebook).first.avatar
-            span = current_account.logins(:provider => :facebook).first.name
-        div.vk
-          -if current_account.nil? || current_account.logins(:provider => :vk).empty?
-            a#vklogin href='#' Войти с помощью Вконтакте
-          -unless current_account.nil? || current_account.logins(:provider => :vk).empty?
-            img.tiny src=current_account.logins(:provider => :vk).first.avatar
-            span = current_account.logins(:provider => :vk).first.name
+      div.top
+        div#logins
+          .login
+            -if current_account.nil?
+              span#not_logged_in
+              div.prompt
+                span
+                  -if current_account.nil? || current_account.logins(:provider => :facebook).empty?
+                    img.tiny src='/images/facebook.png'
+                  -if current_account.nil? || current_account.logins(:provider => :vk).empty?
+                    img.tiny src='/images/vkontakte.png'
+                span
+                  a Войти
+          span.fb
+            -unless current_account.nil? || current_account.logins(:provider => :facebook).empty?
+              img.tiny src=current_account.logins(:provider => :facebook).first.avatar
+              span = current_account.logins(:provider => :facebook).first.name
+          span.vk
+            -unless current_account.nil? || current_account.logins(:provider => :vk).empty?
+              img.tiny src=current_account.logins(:provider => :vk).first.avatar
+              span = current_account.logins(:provider => :vk).first.name
 
-      div.header
-        a href="/"
-          img.logo src='/images/noun_project_756.svg'
-          p
-            span.h1 Народный рейтинг общественных деятелей
-            br
-            br
-            span.quotes title="Здесь вы увидите довольно противоречивые цитаты, призваные заставить вас думать, нежели думать каким-то определённым образом."
-              == partial 'layouts/quotes'
-
+        .header
+          a href="/"
+            img.logo src='/images/noun_project_756.svg'
+            p
+              span.h1 Народный рейтинг общественных деятелей
+              br
+              br
+              span.quotes title="Здесь вы увидите довольно противоречивые цитаты, призваные заставить вас думать, нежели думать каким-то определённым образом."
+                == partial 'layouts/quotes'
       hr
 
       div

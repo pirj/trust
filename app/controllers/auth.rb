@@ -33,15 +33,14 @@ Trust.controllers :auth do
   end
 
   get :vk do
-    sig = params[:sig]
+    token = params[:sid]
     uid = params[:uid]
     name = params[:name]
 
+    logger.error token
     login = Login.first(:uid => uid, :provider => 'vk')
     if login.nil? then
-      logger.error "vk current_account = #{current_account}"
       account = current_account || Account.create(:role => :user)
-      logger.error "vk account = #{account}"
       login = Login.create(:account => account, :uid => uid, :provider => 'vk', :name => name, :avatar => '')
     end
 
@@ -49,7 +48,9 @@ Trust.controllers :auth do
       login.account.role = :admin
       login.account.save
     end
-    session[:vk_auth_sig] = sig
+    session[:vk_auth_token] = token
+    login.token = token
+    login.save
 
     set_current_account(login.account)
     login.name

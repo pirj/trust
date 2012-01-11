@@ -13,16 +13,12 @@ $(function() {
   var timer_id = setTimeout(function(){change_quote(timer_id)}, 6000)
 
   $(".feed").maskedload("/rating/feed")
-  if($('#not_logged_in').length == 0)
+  if($('.not_logged_in').length == 0)
     load_feeds()
 
-  $('.fblogin').click(function(){
+  $('.login').click(function(){
     FB.login({scope : 'user_relationships,publish_stream,offline_access'})
-    return false
-  })
-
-  $('#vklogin').click(function(){
-    VK.Auth.login(vk_auth)
+    VK.Auth.login(vk_auth, 1027)
     return false
   })
 
@@ -106,10 +102,9 @@ function facebook_auth(response) {
 function vk_auth(response) {
   if (response.status === 'connected') {
     var uid = response.session.mid
-    var sig = response.session.sig
     var sid = response.session.sid
     var name = response.session.user.first_name + ' ' + response.session.user.last_name
-    $.get("/auth/vk?sig="+sig+"&sid="+sid+"&uid="+uid+"&name="+name, function(data, status){
+    $.get("/auth/vk?sid="+sid+"&uid="+uid+"&name="+name, function(data, status){
       if(status == 'success'){
         $('div.logins .vk').empty().append($('<span>'+data+'</span>'))
         load_feeds()

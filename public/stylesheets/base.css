@@ -1,4 +1,4 @@
-body {overflow-x: hidden; }
+body {margin-top:0; overflow-x: hidden; }
 
 img.avatar {max-height: 60px; max-width: 80px; padding: 3px; border: 1px solid lightgray; }
 img.tiny {height: 20px; }
@@ -17,6 +17,7 @@ img.logo {height: 80px; padding: 3px; float: left; }
 .rate span.minus:after {content: "▼"; }
 .rate .minus.weak:after {content: "▽"; }
 
+.top {padding-top: 8px; }
 .header span.h1 {font-size: 24px; }
 .header p {margin-left: 100px; height: 7em; }
 .header a {text-decoration: none; color: black; }
@@ -28,10 +29,16 @@ img.logo {height: 80px; padding: 3px; float: left; }
 .quotes span.right {font-weight: bolder; }
 .quotes:hover {background-color: #f8f8f6; }
 
-.logins {
-  position: relative;
+#logins {
   float: right;
+  margin-top: -8px;
+  padding: .5em;
+  background-color: #ffffaa;
+  cursor: pointer;
 }
+
+#logins a {font-weight: bold; text-decoration: none; }
+#logins .prompt span {padding: .5em; }
 
 .right {float: right; }
 .narrow {width: 100px; }
