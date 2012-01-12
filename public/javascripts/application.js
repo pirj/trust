@@ -85,34 +85,36 @@ $(function() {
 }
 
 function facebook_auth(response) {
-  $('.loggingin').removeClass('loggingfb')
   if (response.authResponse) {
     var uid = response.authResponse.userID;
     var token = response.authResponse.accessToken;
     $.get("/auth/facebook?token="+token+"&uid="+uid, function(data, status){
+      $('.loggingin').removeClass('loggingvk')
       if(status == 'success'){
         $('#logins .fb').append($('<span>'+data+'</span>'))
         $('body').addClass('loggedinfb')
         load_feeds()
       }
     })
-  }
+  } else
+    $('.loggingin').removeClass('loggingfb')
 }
 
 function vk_auth(response) {
-  $('.loggingin').removeClass('loggingvk')
   if (response.status === 'connected') {
     var uid = response.session.mid
     var sid = response.session.sid
     var name = response.session.user.first_name + ' ' + response.session.user.last_name
     $.get("/auth/vk?sid="+sid+"&uid="+uid+"&name="+name, function(data, status){
+      $('.loggingin').removeClass('loggingvk')
       if(status == 'success'){
         $('#logins .vk').append($('<span>'+data+'</span>'))
         $('body').addClass('loggedinvk')
         load_feeds()
       }
     })
-  }
+  } else
+    $('.loggingin').removeClass('loggingvk')
 }
 
 function change_quote(timer_id) {

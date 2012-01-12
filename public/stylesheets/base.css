@@ -30,10 +30,12 @@ img.logo {height: 80px; padding: 3px; float: left; }
 
 #logins {
   float: right;
-  margin-top: -8px;
+  margin-top: -10px;
   padding: .5em;
   background-color: #ffffaa;
   cursor: pointer;
+  border: 1px solid #eeeeaa;
+  border-radius: 0 0 5px 5px;
 }
 
 #logins a {text-decoration: none; }
