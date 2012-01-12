@@ -4,6 +4,7 @@ html
     title Рейтинг доверия
     meta name="keywords" content="Рейтинг доверия Народный рейтинг общественных деятелей политик политика"
     meta property="fb:app_id" content="273684999345723"
+    link rel="author" href="humans.txt"
     == stylesheet_link_tag 'grid', 'forms', 'typography', 'base'
 
   body
@@ -47,8 +48,9 @@ html
         == yield
 
       div.span-23.footer
-        | Copyright © 2011
-        a href="http://twitter.com/phil_pirozhkov" Phil Pirozhkov
+        a href="humans.txt"
+          img width="88" height="31" alt="О сайте" title="О сайте" src="http://humanstxt.org/img/oficial-logos/humanstxt-isolated-blank.gif"
+        
 
     == javascript_include_tag 'yepnope-min.js'
     script
