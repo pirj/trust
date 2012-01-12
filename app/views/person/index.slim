@@ -2,6 +2,8 @@ div.span-17.colborder
 
   div.menu
     ul
+      li
+        a.dyn href=url(:person, :index) Все
       -if can? :approve, Person
         li
           a href=url(:person, :suspicious) Деятели на модерацию
