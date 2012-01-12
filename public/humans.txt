@@ -17,3 +17,6 @@
   Software: Linux, Sublime+Vintage, git, Github.com
   Components: YepNope.js, Zepto, jQuery, jQuery Loadmask plugin, jGrowl plugin
   3rd party: Reformal, TenderApp
+
+/* LICENSE */
+  http://creativecommons.org/licenses/by-nc-sa/3.0/
