@@ -20,7 +20,6 @@ img.logo {height: 80px; padding: 3px; float: left; }
 .top {padding-top: 8px; }
 .header span.h1 {font-size: 24px; }
 .header p {margin-left: 100px; height: 7em; }
-.header a {text-decoration: none; color: black; }
 
 .quotes span {display: none; }
 .quotes span.active, .quotes span.active span {display: block; }
