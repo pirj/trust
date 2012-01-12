@@ -2,7 +2,7 @@ body {margin-top:0; overflow-x: hidden; }
 
 img.avatar {max-height: 60px; max-width: 80px; padding: 3px; border: 1px solid lightgray; }
 img.tiny {height: 20px; }
-img.nano {height: 10px; }
+img.nano {height: 1.2em; }
 img.logo {height: 80px; padding: 3px; float: left; }
 
 .rate span {
@@ -37,8 +37,16 @@ img.logo {height: 80px; padding: 3px; float: left; }
   cursor: pointer;
 }
 
-#logins a {font-weight: bold; text-decoration: none; }
+#logins a {text-decoration: none; }
 #logins .prompt span {padding: .5em; }
+#logins span {font-weight: bold; }
+#not_logged_in, #logins .vk, #logins .fb {margin: .5em; }
+
+.loggedinvk.loggedinfb #not_logged_in {display: none; }
+.loggedinvk .inputs_not_logged, .loggedinfb .inputs_not_logged {display: none; }
+
+.add .inputs {display: none; }
+.loggedinvk .add .inputs, .loggedinfb .add .inputs {display: block; }
 
 .right {float: right; }
 .narrow {width: 100px; }

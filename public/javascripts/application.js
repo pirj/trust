@@ -90,10 +90,9 @@ function facebook_auth(response) {
     var token = response.authResponse.accessToken;
     $.get("/auth/facebook?token="+token+"&uid="+uid, function(data, status){
       if(status == 'success'){
-        $('div.logins .fb').empty().append($('<span>'+data+'</span>'))
+        $('#logins .fb').append($('<span>'+data+'</span>'))
+        $('body').addClass('loggedinfb')
         load_feeds()
-        $('.form .inputs').removeClass('hidden')
-        $('.form .inputs_not_logged').addClass('hidden')
       }
     })
   }
@@ -106,10 +105,9 @@ function vk_auth(response) {
     var name = response.session.user.first_name + ' ' + response.session.user.last_name
     $.get("/auth/vk?sid="+sid+"&uid="+uid+"&name="+name, function(data, status){
       if(status == 'success'){
-        $('div.logins .vk').empty().append($('<span>'+data+'</span>'))
+        $('#logins .vk').append($('<span>'+data+'</span>'))
+        $('body').addClass('loggedinvk')
         load_feeds()
-        $('.form .inputs').removeClass('hidden')
-        $('.form .inputs_not_logged').addClass('hidden')
       }
     })
   }

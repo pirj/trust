@@ -16,24 +16,15 @@ html
       div.top
         div#logins
           .login
-            -if current_account.nil?
-              span#not_logged_in
-              div.prompt
-                span
-                  -if current_account.nil? || current_account.logins(:provider => :facebook).empty?
-                    img.tiny src='/images/facebook.png'
-                  -if current_account.nil? || current_account.logins(:provider => :vk).empty?
-                    img.tiny src='/images/vkontakte.png'
-                span
-                  a Войти
-          span.fb
-            -unless current_account.nil? || current_account.logins(:provider => :facebook).empty?
-              img.tiny src=current_account.logins(:provider => :facebook).first.avatar
-              span = current_account.logins(:provider => :facebook).first.name
-          span.vk
-            -unless current_account.nil? || current_account.logins(:provider => :vk).empty?
-              img.tiny src=current_account.logins(:provider => :vk).first.avatar
-              span = current_account.logins(:provider => :vk).first.name
+            span#not_logged_in
+              span
+                a Войти
+            span.fb
+              img.nano src='/images/facebook.png'
+              span.name
+            span.vk
+              img.nano src='/images/vkontakte.png'
+              span.name
 
         .header
           a href="/"
