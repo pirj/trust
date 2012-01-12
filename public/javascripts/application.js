@@ -85,6 +85,7 @@ $(function() {
 }
 
 function facebook_auth(response) {
+  $('.loggingin').removeClass('loggingfb')
   if (response.authResponse) {
     var uid = response.authResponse.userID;
     var token = response.authResponse.accessToken;
@@ -99,6 +100,7 @@ function facebook_auth(response) {
 }
 
 function vk_auth(response) {
+  $('.loggingin').removeClass('loggingvk')
   if (response.status === 'connected') {
     var uid = response.session.mid
     var sid = response.session.sid

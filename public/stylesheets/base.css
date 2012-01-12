@@ -44,6 +44,9 @@ img.logo {height: 80px; padding: 3px; float: left; }
 .loggedinvk.loggedinfb #not_logged_in {display: none; }
 .loggedinvk .inputs_not_logged, .loggedinfb .inputs_not_logged {display: none; }
 
+.loggingin {display: none; padding-right: .5em; }
+.loggingin.loggingfb, .loggingin.loggingvk {display: inline; }
+
 .add .inputs {display: none; }
 .loggedinvk .add .inputs, .loggedinfb .add .inputs {display: block; }
 
