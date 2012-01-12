@@ -105,3 +105,5 @@ img.logo {height: 80px; padding: 3px; float: left; }
 
 .valid {border: 1px solid green !important; }
 .invalid {border: 2px solid red !important; }
+
+img.github {position: absolute; top: -15px; left: -15px; border: 0; }
