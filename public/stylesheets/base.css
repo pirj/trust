@@ -110,7 +110,7 @@ img.logo {height: 80px; padding: 3px; float: left; }
 
 .menu ul {list-style-type:none; margin: 0; padding: 0; }
 .menu ul li {display: inline; margin: .5em 1em .5em 0; }
-.menu a {text-decoration: none; border-bottom: 1px dotted blue;}
+.menu a {text-decoration: none; font-style: italic; border-bottom: 1px dotted blue;}
 
 .valid {border: 1px solid green !important; }
 .invalid {border: 2px solid red !important; }
