@@ -37,7 +37,6 @@ yepnope({
     if(location.href.match(/localhost/)) VK.init({apiId: '2738008'})
     else VK.init({apiId: '2737052'})
     VK.Auth.getLoginStatus(vk_auth, true)
-//    VK.UI.button('vklogin')
   }
 })
 
