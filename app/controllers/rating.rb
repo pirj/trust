@@ -29,18 +29,21 @@ Trust.controllers :rating do
   end
 
   get :my do
+    authorize! :plus, Rating
     @title = "Мои действия"
     @ratings = aggregate current_account.ratings.page(0, :per_page => 5)
     render 'rating/table', :layout => false
   end
 
   get :recommendations do
+    authorize! :plus, Rating
     @title = "Единомышленники"
     @ratings = []
     render 'rating/table', :layout => false
   end
 
   get :friends do
+    authorize! :plus, Rating
     @title = "Друзья"
     friends = MultiJson.decode(HTTParty.get("https://graph.facebook.com/me/friends?access_token=#{session[:facebook_auth_token]}").body)
       .first[1].map { |friend| friend['id'] }

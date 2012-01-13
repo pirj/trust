@@ -65,7 +65,7 @@ $(function() {
   $('input#name').hidingprompt(function(val){    
     $("#list").maskedload("/?query="+val)
   })
-  $('textarea#bio').hidingprompt()
+  $('textarea#bio, input#photo').hidingprompt()
 
   $('.collapsed').click(function(){
     $('.add .title').hide()
