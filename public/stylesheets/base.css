@@ -1,4 +1,13 @@
-body {margin-top:0; overflow-x: hidden; }
+html {height: 100%;}
+body {margin: 0; overflow-x: hidden; min-height: 100%;}
+
+#footer {
+  padding-top: 2px;
+  height: 34px;
+  margin-top: -36px;
+}
+#footer a {height: 0;}
+#main {padding-bottom: 36px;}
 
 img.avatar {max-height: 60px; max-width: 80px; padding: 3px; border: 1px solid lightgray; }
 img.tiny {height: 20px; }

@@ -15,7 +15,7 @@
   Github: https://github.com/pirj/trust
   Language: Russian
   Software: Linux, Sublime+Vintage, git, Github.com
-  Components: Ruby, Padrino, Sinatra, DataMapper, Slim, Blueprint.css, YepNope.js, Zepto, jQuery, jQuery Loadmask plugin, jGrowl plugin
+  Components: Ruby, Padrino, Sinatra, DataMapper, Slim, Blueprint.css, YepNope.js, Zepto, jQuery, jQuery Loadmask plugin, jGrowl plugin, CSS Sticky Footer
   3rd party: Reformal, TenderApp
 
 /* LICENSE */

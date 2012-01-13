@@ -5,53 +5,54 @@ html
     meta name="keywords" content="Рейтинг доверия Народный рейтинг общественных деятелей политик политика"
     meta property="fb:app_id" content="273684999345723"
     link rel="author" href="humans.txt"
-    == stylesheet_link_tag 'grid', 'forms', 'typography', 'base'
+    == stylesheet_link_tag 'grid', 'forms', 'typography', 'stickyfooter', 'base'
 
   body
     div#fb-root
+    div#wrap
+      div#main.container
+        a href="https://github.com/pirj/trust"
+          img.github src="https://a248.e.akamai.net/assets.github.com/img/edc6dae7a1079163caf7f17c60495bbb6d027c93/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub"
 
-    div.container
-      a href="https://github.com/pirj/trust"
-        img.github src="https://a248.e.akamai.net/assets.github.com/img/edc6dae7a1079163caf7f17c60495bbb6d027c93/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub"
+        div.top
+          div#logins
+            .login
+              span#not_logged_in
+                span.loggingin.loggingfb.loggingvk
+                  img src='/images/loading.gif'
+                span
+                  a Войти
+              span.fb
+                img.nano src='/images/facebook.png'
+                span.name
+              span.vk
+                img.nano src='/images/vkontakte.png'
+                span.name
 
-      div.top
-        div#logins
-          .login
-            span#not_logged_in
-              span.loggingin.loggingfb.loggingvk
-                img src='/images/loading.gif'
-              span
-                a Войти
-            span.fb
-              img.nano src='/images/facebook.png'
-              span.name
-            span.vk
-              img.nano src='/images/vkontakte.png'
-              span.name
+          .header
+            img.logo src='/images/noun_project_756.svg'
+            p
+              span.h1 Народный рейтинг общественных деятелей
+              br
+              br
+              span.quotes title="Здесь вы увидите довольно противоречивые цитаты, призваные заставить вас думать, нежели думать каким-то определённым образом."
+                == partial 'layouts/quotes'
+        hr
 
-        .header
-          img.logo src='/images/noun_project_756.svg'
-          p
-            span.h1 Народный рейтинг общественных деятелей
-            br
-            br
-            span.quotes title="Здесь вы увидите довольно противоречивые цитаты, призваные заставить вас думать, нежели думать каким-то определённым образом."
-              == partial 'layouts/quotes'
-      hr
+        div
+          -if can? :manage, Account
+            span
+              a href=url(:person, :suspicious) Управление пользователями
 
-      div
-        -if can? :manage, Account
-          span
-            a href=url(:person, :suspicious) Управление пользователями
+        div
+          == yield
 
-      div
-        == yield
 
-      div.span-23.footer
-        a href="humans.txt"
-          img alt="О сайте" title="О сайте" src="/images/humanstxt.gif"
-        a href="http://creativecommons.org/licenses/by-nc-sa/3.0/"
-          img src='/images/CC-BY-NC-SA.png' alt='Лицензионное соглашение' title='Лицензионное соглашение'        
+    div#footer.container
+      a href="humans.txt"
+        img alt="О сайте" title="О сайте" src="/images/humanstxt.gif"
+      a href="http://creativecommons.org/licenses/by-nc-sa/3.0/"
+        img src='/images/CC-BY-NC-SA.png' alt='Лицензионное соглашение' title='Лицензионное соглашение'        
 
     == javascript_include_tag 'yepnope-min.js'
     script
