@@ -54,3 +54,10 @@ var reformalOptions = {
   tab_image_url: "http://tab.reformal.ru/0JLQsNGI0Lgg0L7RgtC30YvQstGLINC4INC%252F0YDQtdC00LvQvtC20LXQvdC40Y8=/f0f0f0/a18926533175bec9e0a554c5d211faa0"
 }
 yepnope('//media.reformal.ru/widgets/v1/reformal.js')
+
+// Google Analytics
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-28327454-1']);
+_gaq.push(['_setDomainName', 'grajdanin.org']);
+_gaq.push(['_trackPageview']);
+yepnope('//www.google-analytics.com/ga.js')

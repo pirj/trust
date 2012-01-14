@@ -16,7 +16,7 @@
   Language: Russian
   Software: Linux, Sublime+Vintage, git, Github.com
   Components: Ruby, Padrino, Sinatra, DataMapper, Slim, Blueprint.css, YepNope.js, Zepto, jQuery, jQuery Loadmask plugin, jGrowl plugin, CSS Sticky Footer
-  3rd party: Reformal, TenderApp
+  3rd party: Reformal, TenderApp, Google Analytics
 
 /* LICENSE */
   http://creativecommons.org/licenses/by-nc-sa/3.0/
