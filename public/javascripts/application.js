@@ -29,7 +29,7 @@ $(function() {
     })
 
     var query = ($('input#search').val() == $('input#search').attr('rel')) ? '' : $('input#search').val()
-    $("#list").maskedload("/?query="+query, callback)
+    $("#list").maskedload("/?query="+encodeURI(query), callback)
   }
 
   $('.add .form input[type=submit]').click(function(){
@@ -56,14 +56,14 @@ $(function() {
   })
 
   $('input#search').hidingprompt(function(val){
-    $("#list").maskedload("/?query="+val)
+    $("#list").maskedload("/?query="+encodeURI(val))
   })
 
   $('input#name').validate(/^([А-ЯЁ][а-яё]+(-[А-ЯЁ][а-яё]+)*)(\s[А-ЯЁ][а-яё]+){2,}$/)
   $('textarea#bio').validate(/^(.){1,255}$/)
 
-  $('input#name').hidingprompt(function(val){    
-    $("#list").maskedload("/?query="+val)
+  $('input#name').hidingprompt(function(val){
+    $("#list").maskedload("/?query="+encodeURI(val))
   })
   $('textarea#bio, input#photo').hidingprompt()
 
@@ -78,7 +78,7 @@ $(function() {
   $('.menu a.dyn').click(function(){
     var query = ($('input#search').val() == $('input#search').attr('rel')) ? '' : $('input#search').val()
     var filter = $(this).attr('href')
-    $("#list").maskedload(filter+"/?query="+query)    
+    $("#list").maskedload(filter+"/?query="+encodeURI(query))    
     return false
   })
 })
