@@ -1,6 +1,6 @@
 yepnope([
   { // JQuery or Zepto
-    test: navigator.appName.match(/Explorer/), // IE?
+    test: true, //navigator.appName.match(/Explorer/), // IE?
     yep: '/javascripts/jquery.min.js',
     nope: ['/javascripts/zepto.min.js', '/javascripts/zepto.fx_methods.js'],
     complete: function(){
@@ -11,7 +11,11 @@ yepnope([
     }
   },
 // Plugins
-  ['/javascripts/jquery.loadmask.min.js', '/javascripts/jquery.jgrowl_minimized.js', '/javascripts/maskedload.js', '/javascripts/hidingprompt.js', '/javascripts/validate.js'],
+  ['/javascripts/jquery.loadmask.min.js',
+    '/javascripts/jquery.jgrowl_minimized.js',
+    '/javascripts/maskedload.js',
+    '/javascripts/hidingprompt.js',
+    '/javascripts/validate.js'],
   {
     load: '/javascripts/application.js',
     callback: function(){js_ready()}
