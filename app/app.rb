@@ -6,9 +6,9 @@ class Trust < Padrino::Application
   register Padrino::Helpers
   register Padrino::Admin::AccessControl
   register Padrino::CanCan
+  register Sinatra::Flash
 
-  enable :sessions
-#  set :sessions, true
+  use Rack::Session::Pool
   enable :authentication
   use Rack::Protection
   disable :asset_stamp
