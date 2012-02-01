@@ -17,7 +17,7 @@ $(function() {
     load_feeds()
 
   $('.login').click(function(){
-    FB.login({scope : 'user_relationships,publish_stream,offline_access'})
+    FB.login(function(){}, {scope : 'user_relationships,publish_stream,offline_access'})
     VK.Auth.login(vk_auth, 1027)
     return false
   })
