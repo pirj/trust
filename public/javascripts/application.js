@@ -89,7 +89,7 @@ function facebook_auth(response) {
     var uid = response.authResponse.userID;
     var token = response.authResponse.accessToken;
     $.get("/auth/facebook?token="+token+"&uid="+uid, function(data, status){
-      $('.loggingin').removeClass('loggingvk')
+      $('.loggingin').removeClass('loggingfb')
       if(status == 'success'){
         $('#logins .fb').append($('<span>'+data+'</span>'))
         $('body').addClass('loggedinfb')
