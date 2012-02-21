@@ -88,7 +88,7 @@ function facebook_auth(response) {
   if (response.authResponse) {
     var uid = response.authResponse.userID;
     var token = response.authResponse.accessToken;
-    $.get("/auth/facebook?token="+token, function(data, status){
+    $.get("/auth/facebook?token="+token+"&uid="+uid, function(data, status){
       $('.loggingin').removeClass('loggingfb')
       if(status == 'success'){
         $('#logins .fb').append($('<span>'+data+'</span>'))
@@ -102,10 +102,8 @@ function facebook_auth(response) {
 
 function vk_auth(response) {
   if (response.status === 'connected') {
-    var uid = response.session.mid
-    var sid = response.session.sid
-    var name = response.session.user.first_name + ' ' + response.session.user.last_name
-    $.get("/auth/vk?sid="+sid+"&uid="+uid+"&name="+name, function(data, status){
+    var params = JSON.stringify(response.session)
+    $.get("/auth/vk?params="+params, function(data, status){
       $('.loggingin').removeClass('loggingvk')
       if(status == 'success'){
         $('#logins .vk').append($('<span>'+data+'</span>'))

@@ -25,6 +25,11 @@ yepnope([
 // Plugin CSS
 yepnope(['/stylesheets/jquery.loadmask.css', '/stylesheets/jquery.jgrowl.css'])
 
+yepnope({
+  test: JSON === 'undefined',
+  yep: '/javascripts/json.js'
+})
+
 //Facebook
 yepnope({
   load: ['//connect.facebook.net/ru_RU/all.js'],
