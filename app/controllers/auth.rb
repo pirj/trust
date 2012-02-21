@@ -7,11 +7,12 @@ Trust.controllers :auth do
   # TODO: when a user log in with additional login and account exists, glue accounts
   get :facebook do
     token = params[:token]
-    uid = params[:uid]
 
+    user = MultiJson.decode HTTParty.get("https://graph.facebook.com/me?access_token=#{token}").body
+    uid = user['id'] 
+    halt 403 if uid.nil?
     login = Login.first(:uid => uid, :provider => 'facebook')
     if login.nil? then
-      user = MultiJson.decode HTTParty.get("https://graph.facebook.com/me?access_token=#{token}").body
       avatar = NoRedirects.get("https://graph.facebook.com/me/picture?access_token=#{token}&type=square").headers['location']
       account = current_account || Account.create(:role => :user)
       login = Login.create(:account => account, :uid => uid, :provider => 'facebook', :name => user['name'], :avatar => avatar)
