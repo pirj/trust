@@ -7,6 +7,10 @@ require 'rubygems' unless defined?(Gem)
 require 'bundler/setup'
 Bundler.require(:default, PADRINO_ENV)
 
+# Load secret ENV
+secret_env = File.join(PADRINO_ROOT, 'config', 'secret_env.rb')
+load(secret_env) if File.exists?(secret_env)
+
 ##
 # Enable devel logging
 #

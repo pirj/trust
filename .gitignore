@@ -5,3 +5,5 @@ vendor/gems/*
 !vendor/gems/cache/
 .sass-cache/*
 db/trust_development.db
+config/secret_env.rb
+.irb-history
