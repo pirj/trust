@@ -39,7 +39,8 @@ Trust.controllers :auth do
     
     halt 403 unless sig == data['sig']
     uid = data['mid']
-    name = "#{data['first_name']} #{data['last_name']}"
+    user = data['user']
+    name = "#{user['first_name']} #{user['last_name']}"
     login = Login.first(:uid => uid, :provider => 'vk')
     if login.nil? then
       account = current_account || Account.create(:role => :user)
