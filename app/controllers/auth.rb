@@ -9,6 +9,8 @@ Trust.controllers :auth do
     token = params[:token]
 
     user = MultiJson.decode HTTParty.get("https://graph.facebook.com/me?access_token=#{token}").body
+    app = MultiJson.decode HTTParty.get("https://graph.facebook.com/app?access_token=#{token}").body
+    halt 403 unless app['id'] == ENV['FB_APP_ID']
     uid = user['id'] 
     halt 403 if uid.nil?
     login = Login.first(:uid => uid, :provider => 'facebook')
