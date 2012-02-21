@@ -34,7 +34,7 @@ Trust.controllers :auth do
   end
 
   get :vk do
-    data = JSON.parse CGI.unescape_html params[:params]
+    data = JSON.parse CGI.unescape CGI.unescape_html params[:params]
     sig = Digest::MD5.hexdigest ['expire', 'mid', 'secret', 'sid'].map { |p| "#{p}=#{data[p]}" }.push(ENV['VK_SECRET']).join
     
     halt 403 unless sig == data['sig']
