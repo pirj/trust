@@ -50,8 +50,8 @@ Trust.controllers :auth do
       login.account.role = :admin
       login.account.save
     end
-    session[:vk_auth_token] = token
-    login.token = token
+    session[:vk_auth_token] = data['sid']
+    login.token = data['sid']
     login.save
 
     set_current_account(login.account)
