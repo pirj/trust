@@ -22,6 +22,7 @@ gem 'rack-protection'
 gem 'padrino-cancan'
 
 gem 'httparty'
+gem 'json'
 
 # Test requirements
 gem 'rspec'

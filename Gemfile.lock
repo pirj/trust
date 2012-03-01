@@ -149,6 +149,7 @@ DEPENDENCIES
   dm-types
   dm-validations
   httparty
+  json
   padrino (= 0.10.5)
   padrino-cancan
   pg
